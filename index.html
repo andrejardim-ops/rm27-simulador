@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a3d91">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Rota Medicina 2027 — Simulador do Lorenzo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a3d91'/%3E%3Cpath d='M16 6v20M6 16h20' stroke='%2322c55e' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar no-print">
+  <div class="brand"><span class="logo">+</span><div><b>Rota Medicina 2027</b><small>Simulador do Lorenzo</small></div></div>
+  <button id="btn-ajustar" class="btn btn-green" type="button">Ajustar cenário</button>
+</header>
+<div class="stickies no-print"><div id="scenario-bar" class="scenario-bar" aria-live="polite"></div>
+<nav id="nav" class="nav" aria-label="Seções"></nav></div>
+
+<main id="app">
+  <section class="view" id="view-visao" data-title="Visão geral"></section>
+  <section class="view" id="view-tri" data-title="Simulador TRI"></section>
+  <section class="view" id="view-univ" data-title="Universidades"></section>
+  <section class="view" id="view-metas" data-title="Metas de acertos"></section>
+  <section class="view" id="view-comparador" data-title="Comparador de cenários"></section>
+  <section class="view" id="view-estrategia" data-title="Estratégia de prova"></section>
+  <section class="view" id="view-relatorio" data-title="Relatório para compartilhar"></section>
+  <noscript><p class="card">Este simulador precisa de JavaScript ativado.</p></noscript>
+</main>
+
+<button id="fab" class="btn btn-green fab no-print" type="button">Ajustar cenário</button>
+<div id="sheet" class="sheet no-print" hidden>
+  <div class="sheet-backdrop" data-close="1"></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="Ajustar cenário">
+    <div class="sheet-head"><b>Ajustar cenário</b><button class="btn btn-ghost" data-close="1" type="button">Fechar</button></div>
+    <div id="sheet-controls"></div>
+  </div>
+</div>
+<div id="toast" class="toast no-print" role="status" hidden></div>
+<footer class="foot no-print">Estimativas e cortes históricos — não são nota oficial nem previsão de aprovação. Veja as fontes em cada seção.</footer>
+<script src="js/app.js"></script>
+</body>
+</html>
