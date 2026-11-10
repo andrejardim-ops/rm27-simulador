@@ -1,0 +1,680 @@
+{
+ "meta": {
+  "versao": "2026-11-09",
+  "aviso": "Cortes históricos NÃO são previsão para 2027 e NÃO indicam probabilidade de aprovação. Cada edital define a base de notas do ENEM, pesos e mínimas. Dados de fontes secundárias que republicam informações do MEC e das universidades; confirme no edital oficial.",
+  "como_atualizar": "Edite este arquivo: ajuste \"corte\" (valor/ano/fontes) e \"pesos\", ou adicione um novo objeto na lista \"universidades\" com os mesmos campos. Use \"valor\": null para \"não verificado\"."
+ },
+ "universidades": [
+  {
+   "id": "ufmg",
+   "sigla": "UFMG",
+   "nome": "Universidade Federal de Minas Gerais",
+   "cidade": "Belo Horizonte",
+   "uf": "MG",
+   "campus": "Campus Saúde",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 818.5,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufmg/medicina/"
+     },
+     {
+      "nome": "EnemHub — UFMG Medicina",
+      "url": "https://enemhub.com.br/sisu/ufmg/campus-saude/medicina-bacharelado"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 812.48
+   },
+   "pesos": {
+    "cn": 1,
+    "ch": 1,
+    "lc": 1,
+    "mt": 1,
+    "red": 1
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {},
+   "modalidades": [],
+   "notas": [
+    "Todas as áreas com peso 1 e sem nota mínima por área (Sisu 2026)."
+   ]
+  },
+  {
+   "id": "ufrj",
+   "sigla": "UFRJ",
+   "nome": "Universidade Federal do Rio de Janeiro",
+   "cidade": "Rio de Janeiro",
+   "uf": "RJ",
+   "campus": "Cidade Universitária",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 833.86,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufrj/medicina-rio-de-janeiro/"
+     },
+     {
+      "nome": "Aprova Total — maiores cortes Sisu 2026",
+      "url": "https://aprovatotal.com.br/nota-de-corte-sisu-medicina/"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 823.79
+   },
+   "pesos": {
+    "cn": 4,
+    "ch": 1,
+    "lc": 2,
+    "mt": 2,
+    "red": 4
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {
+    "red": 300
+   },
+   "modalidades": [],
+   "notas": [
+    "Redação com mínima de 300 pontos."
+   ]
+  },
+  {
+   "id": "ufsc",
+   "sigla": "UFSC",
+   "nome": "Universidade Federal de Santa Catarina",
+   "cidade": "Florianópolis",
+   "uf": "SC",
+   "campus": "Campus Universitário (Trindade)",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027). A UFSC tem DUAS vias: Sisu (30 vagas em Florianópolis) e Vestibular Unificado UFSC/IFC 2027 (70 vagas em Florianópolis; inscrições encerradas; provas em 5 e 6/12/2026). O corte abaixo é só do Sisu."
+   },
+   "corte": {
+    "valor": 827.78,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufsc/medicina-florianopolis/"
+     },
+     {
+      "nome": "EnemHub — UFSC Medicina",
+      "url": "https://enemhub.com.br/sisu/ufsc/campus-universitario-reitor-joao-david-ferreira-lima/medicina-bacharelado"
+     },
+     {
+      "nome": "Vestibular Unificado UFSC/IFC 2027",
+      "url": "https://vestibularunificado2027.ufsc.br/inscricao/"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 820.6
+   },
+   "pesos": {
+    "cn": 1,
+    "ch": 1,
+    "lc": 1,
+    "mt": 1,
+    "red": 1.5
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {
+    "cn": 358,
+    "ch": 344,
+    "lc": 319,
+    "mt": 337,
+    "red": 300
+   },
+   "modalidades": [],
+   "notas": [
+    "Via Sisu: o corte exibido vale apenas para as vagas do Sisu. O Vestibular Unificado 2027 tem prova própria (inscrições já encerradas)."
+   ]
+  },
+  {
+   "id": "ufu",
+   "sigla": "UFU",
+   "nome": "Universidade Federal de Uberlândia",
+   "cidade": "Uberlândia",
+   "uf": "MG",
+   "campus": "Campus Umuarama",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 842.57,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufu/medicina/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026 (menciona os novos pesos da UFU)",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": null,
+   "pesos": {
+    "cn": 3,
+    "ch": 1,
+    "lc": 1,
+    "mt": 2,
+    "red": 3
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {
+    "cn": 100,
+    "ch": 100,
+    "lc": 100,
+    "mt": 100,
+    "red": 400,
+    "media": 400
+   },
+   "modalidades": [],
+   "notas": [
+    "Em 2026 a UFU mudou os pesos (Natureza 3, Matemática 2, Redação 3). Por isso o corte de 2025 (799,27, pesos antigos) não é comparável e não é exibido como referência.",
+    "Redação com mínima de 400 pontos; média mínima de 400."
+   ]
+  },
+  {
+   "id": "ufes",
+   "sigla": "UFES",
+   "nome": "Universidade Federal do Espírito Santo",
+   "cidade": "Vitória",
+   "uf": "ES",
+   "campus": "Vitória",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 810.97,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufes/medicina/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 807.15
+   },
+   "pesos": {
+    "cn": 4,
+    "ch": 2,
+    "lc": 3,
+    "mt": 2,
+    "red": 4
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {
+    "cn": 607,
+    "ch": 625,
+    "lc": 540,
+    "mt": 640,
+    "media": 482.5
+   },
+   "modalidades": [
+    {
+     "id": "ep_baixa",
+     "nome": "Escola pública — renda até 1 salário mínimo/pessoa",
+     "valor": 775.67
+    },
+    {
+     "id": "ep",
+     "nome": "Escola pública — independente de renda",
+     "valor": 807.43
+    }
+   ],
+   "notas": [
+    "Notas mínimas por área no Sisu 2026: Natureza 607, Humanas 625, Linguagens 540, Matemática 640; média mínima 482,5.",
+    "Existe também Medicina em São Mateus (ES), curso novo, com corte menor (786,95 na ampla) — não incluído nesta lista."
+   ]
+  },
+  {
+   "id": "ufersa",
+   "sigla": "UFERSA",
+   "nome": "Universidade Federal Rural do Semi-Árido",
+   "cidade": "Mossoró",
+   "uf": "RN",
+   "campus": "Mossoró",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 779.72,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufersa/medicina/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026 (menor corte entre as acompanhadas)",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 769.15
+   },
+   "pesos": {
+    "cn": 3.5,
+    "ch": 2,
+    "lc": 2,
+    "mt": 1,
+    "red": 1.5
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {},
+   "modalidades": [
+    {
+     "id": "ep_baixa",
+     "nome": "Escola pública — renda até 1 salário mínimo/pessoa",
+     "valor": 762.15
+    },
+    {
+     "id": "ep",
+     "nome": "Escola pública — independente de renda",
+     "valor": 773.3
+    }
+   ],
+   "notas": []
+  },
+  {
+   "id": "unemat",
+   "sigla": "UNEMAT",
+   "nome": "Universidade do Estado de Mato Grosso",
+   "cidade": "Cáceres",
+   "uf": "MT",
+   "campus": "Câmpus Universitário Jane Vanini",
+   "processo": {
+    "tipo": "Vestibular próprio",
+    "status2027": "Medicina (Cáceres) no Processo Seletivo 2027/1 (Edital 005/2026): 30 vagas (12 ampla concorrência), com prova própria em 22/11/2026 (45 questões objetivas + redação). Inscrições encerraram em 13/10/2026. Não usa a nota do ENEM nesse processo."
+   },
+   "corte": {
+    "valor": null,
+    "ano": null,
+    "edicao": null,
+    "modalidade": "Ampla concorrência",
+    "tipo": "sem corte comparável",
+    "base_enem": null,
+    "fontes": [
+     {
+      "nome": "UNEMAT — notícia do Vestibular 2027",
+      "url": "https://unemat.br/noticias/27-7-2026-vestibular-da-unemat-oferece-2-350-vagas-para-inicio-em-2027"
+     },
+     {
+      "nome": "UNEMAT — página de vestibulares",
+      "url": "https://unemat.br/site/vestibular"
+     }
+    ],
+    "verificacao": "não verificado"
+   },
+   "anterior": null,
+   "pesos": null,
+   "pesos_ano": null,
+   "pesos_fonte": null,
+   "minimos": {},
+   "modalidades": [],
+   "notas": [
+    "Processo próprio: números do Sisu não são usados aqui, por não valerem para esse vestibular.",
+    "Esta universidade não entra no cálculo de distância ao corte."
+   ]
+  },
+  {
+   "id": "unb",
+   "sigla": "UnB",
+   "nome": "Universidade de Brasília",
+   "cidade": "Brasília",
+   "uf": "DF",
+   "campus": "Brasília",
+   "processo": {
+    "tipo": "Acesso Enem UnB / PAS / Vestibular (fora do Sisu)",
+    "status2027": "Medicina não participa do Sisu (fora desde 2020). A UnB seleciona por Acesso Enem (usa a nota do ENEM com pesos próprios, executado pelo Cebraspe), PAS e Vestibular. Edital do Acesso Enem 2027 ainda não verificado."
+   },
+   "corte": {
+    "valor": 846.26,
+    "ano": 2026,
+    "edicao": "Acesso Enem UnB 2026 (ENEM 2025) — menor nota final entre os convocados na 1ª chamada",
+    "modalidade": "Sistema Universal (8 das 20 vagas)",
+    "tipo": "menor nota convocada em 1ª chamada (não é corte do Sisu); 2ª chamada chegou a 762,20",
+    "base_enem": "ENEM 2025",
+    "fontes": [
+     {
+      "nome": "Cebraspe — Acesso Enem UnB 2026 (editais)",
+      "url": "https://www.cebraspe.org.br/vestibulares/unb_26_acessoenem"
+     },
+     {
+      "nome": "VemMED — nota de corte Medicina UnB",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/unb"
+     }
+    ],
+    "verificacao": "valor lido em fonte secundária (VemMED) que cita o Edital nº 16 do Cebraspe; não conferido diretamente no PDF"
+   },
+   "anterior": null,
+   "pesos": {
+    "cn": 4,
+    "ch": 2,
+    "lc": 2,
+    "mt": 4,
+    "red": 2
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Edital nº 1 do Acesso Enem UnB 2026, subitem 9.2: NF = (2R + 4MT + 2LC + 2CH + 4CN) ÷ 14",
+   "minimos": {
+    "red": 300,
+    "cn": 250,
+    "ch": 250,
+    "lc": 250,
+    "mt": 250
+   },
+   "modalidades": [],
+   "notas": [
+    "Corte de eliminação: redação ≥ 300 e demais áreas ≥ 250 (segundo VemMED sobre o edital).",
+    "A 1ª chamada é a referência mais alta; as chamadas seguintes e a lista de espera costumam descer (2ª chamada: 762,20)."
+   ]
+  },
+  {
+   "id": "ufsj-sjdr",
+   "sigla": "UFSJ-SJDR",
+   "nome": "Universidade Federal de São João del-Rei",
+   "cidade": "São João del-Rei",
+   "uf": "MG",
+   "campus": "São João del-Rei",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 798.83,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufsj/medicina-sao-joao-del-rei/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 792.86
+   },
+   "pesos": {
+    "cn": 2,
+    "ch": 1,
+    "lc": 2,
+    "mt": 1,
+    "red": 2
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {
+    "cn": 250,
+    "ch": 250,
+    "lc": 250,
+    "mt": 250,
+    "red": 250
+   },
+   "modalidades": [
+    {
+     "id": "ep_baixa",
+     "nome": "Escola pública — renda até 1 salário mínimo/pessoa",
+     "valor": 765.11
+    },
+    {
+     "id": "ep",
+     "nome": "Escola pública — independente de renda",
+     "valor": 793.11
+    }
+   ],
+   "notas": []
+  },
+  {
+   "id": "ufsj-div",
+   "sigla": "UFSJ-DV",
+   "nome": "Universidade Federal de São João del-Rei",
+   "cidade": "Divinópolis",
+   "uf": "MG",
+   "campus": "Divinópolis",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 800.78,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/ufsj/medicina-divinopolis/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 792.44
+   },
+   "pesos": {
+    "cn": 2,
+    "ch": 1,
+    "lc": 2,
+    "mt": 1,
+    "red": 2
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {
+    "cn": 250,
+    "ch": 250,
+    "lc": 250,
+    "mt": 250,
+    "red": 250
+   },
+   "modalidades": [
+    {
+     "id": "ep_baixa",
+     "nome": "Escola pública — renda até 1 salário mínimo/pessoa",
+     "valor": 770.3
+    },
+    {
+     "id": "ep",
+     "nome": "Escola pública — independente de renda",
+     "valor": 794.26
+    }
+   ],
+   "notas": []
+  },
+  {
+   "id": "unirio",
+   "sigla": "UNIRIO",
+   "nome": "Universidade Federal do Estado do Rio de Janeiro",
+   "cidade": "Rio de Janeiro",
+   "uf": "RJ",
+   "campus": "Rio de Janeiro",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 800.0,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/unirio/medicina/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fonte secundária (agregador que republica dados do MEC); confirmado em pelo menos uma segunda fonte"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 792.52
+   },
+   "pesos": {
+    "cn": 3,
+    "ch": 2,
+    "lc": 3,
+    "mt": 2,
+    "red": 3
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {},
+   "modalidades": [
+    {
+     "id": "ep_baixa",
+     "nome": "Escola pública — renda até 1 salário mínimo/pessoa",
+     "valor": 764.87
+    },
+    {
+     "id": "ep",
+     "nome": "Escola pública — independente de renda",
+     "valor": 791.72
+    }
+   ],
+   "notas": []
+  },
+  {
+   "id": "unimontes",
+   "sigla": "Unimontes",
+   "nome": "Universidade Estadual de Montes Claros",
+   "cidade": "Montes Claros",
+   "uf": "MG",
+   "campus": "Montes Claros",
+   "processo": {
+    "tipo": "Sisu",
+    "status2027": "Edital do Sisu 2027 ainda não publicado; confirmar no Termo de Adesão da universidade (normalmente divulgado entre dez/2026 e jan/2027)."
+   },
+   "corte": {
+    "valor": 794.89,
+    "ano": 2026,
+    "edicao": "Sisu 2026 (1ª edição) — chamada regular",
+    "modalidade": "Ampla concorrência",
+    "tipo": "nota de corte ponderada pelos pesos da universidade",
+    "base_enem": "ENEM 2023–2025 (melhor média por opção)",
+    "fontes": [
+     {
+      "nome": "De Questões — Sisu 2026 (dados do MEC)",
+      "url": "https://dequestoes.com.br/sisu/unimontes/medicina/"
+     },
+     {
+      "nome": "VemMED — comparativo Sisu 2026 (indica 788,64)",
+      "url": "https://vemmed.com.br/sisu/nota-de-corte/quanto-precisa-tirar-no-enem"
+     }
+    ],
+    "verificacao": "fontes secundárias divergem (794,89 × 788,64); confirmar"
+   },
+   "anterior": {
+    "ano": 2025,
+    "valor": 786.9
+   },
+   "pesos": {
+    "cn": 2,
+    "ch": 2,
+    "lc": 2,
+    "mt": 1,
+    "red": 2
+   },
+   "pesos_ano": 2026,
+   "pesos_fonte": "Termo de Adesão ao Sisu 2026 (via De Questões); confirmar no Sisu 2027",
+   "minimos": {},
+   "modalidades": [],
+   "notas": [
+    "Fontes divergem: De Questões informa 794,89 e VemMED informa 788,64 para a ampla de 2026. Exibimos 794,89 (mais alto = mais conservador). Confirmar no resultado oficial."
+   ]
+  }
+ ]
+}
