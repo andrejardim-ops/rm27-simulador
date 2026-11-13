@@ -84,7 +84,19 @@ details{margin:6px 0}summary{cursor:pointer;min-height:40px;display:flex;align-i
 .heat .ok{background:var(--green);color:#fff}.heat .no{background:#e4e9f2;color:#8b97ad}.heat .cur{outline:3px solid var(--navy);outline-offset:-1px}
 .heat .hd{background:none;color:var(--mut);font-weight:700}
 .filters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
-.filters label{font-size:.8rem;font-weight:700;color:var(--navy)}
+.filters label{font-size:.8rem;font-weight:700;color:var(--navy);display:block;margin-bottom:4px}
+.filters .span2{grid-column:1 / -1}
+.chip.pay{background:var(--amber2);color:#8a4b00}
+.statusline{font-size:.82rem;color:var(--mut);margin:2px 0 6px}
+dl.dates{display:grid;grid-template-columns:7.4rem 1fr;gap:6px 8px;margin:8px 0}
+dl.dates dt{color:var(--mut);font-size:.78rem;font-weight:700}
+dl.dates dd{margin:0}
+dl.dates dd.nv{background:var(--red2);border-radius:8px;padding:4px 8px}
+.vcard{border-left:6px solid var(--line)}
+.vcard.ok{border-left-color:var(--green)}
+.vcard.parcial{border-left-color:var(--amber)}
+.vcard.na{border-left-color:var(--red)}
+.ucard.parcial{border-left-color:var(--amber)}
 .check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;min-height:44px}
 .check input{width:24px;height:24px;margin-top:2px;accent-color:var(--green);flex:0 0 auto}
 .days{display:grid;gap:8px}

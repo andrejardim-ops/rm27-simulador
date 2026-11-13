@@ -1,0 +1,873 @@
+{
+ "meta": {
+  "versao": "2026-11-13",
+  "acesso": "13/11/2026",
+  "fuso": "America/Sao_Paulo",
+  "aviso": "Datas lidas em editais e páginas oficiais em 13/11/2026. Onde o status não é verificado, o texto permanece \"não verificado\" ou \"parcial\". Nenhuma data é previsão de nota de corte nem de aprovação.",
+  "origem": "Planilha vestibulares_proprios (Sisu 2027 nacional + 34 processos próprios).",
+  "siglas": "Campo siglas é só um índice para o filtro do app, tirado do nome da instituição na planilha. Não é código do MEC."
+ },
+ "processos": [
+  {
+   "id": "01-mec-sisu-2027-calend-rio-nacional",
+   "instituicao": "MEC — Sisu 2027 (calendário nacional)",
+   "processo": "Sisu 2027 — Edital nº 86/2026 (adesão das instituições)",
+   "inscricao": "não verificado (datas de inscrição do candidato não publicadas)",
+   "provas": "Enem 2024, 2025 e 2026 (notas válidas no Sisu 2027); datas do Sisu para candidato: não verificado",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "in.gov.br",
+     "url": "https://www.in.gov.br/web/dou/-/edital-n-86-de-6-de-novembro-de-2026-742671077"
+    }
+   ],
+   "fonte_texto": "https://www.in.gov.br/web/dou/-/edital-n-86-de-6-de-novembro-de-2026-742671077",
+   "acesso": "13/11/2026",
+   "status": "parcial (edital de adesão: adesão das instituições 09/11/2026 a 11/12/2026, 23h59 Brasília; DOU 09/11/2026 seç. 3 p. 32)",
+   "siglas": [],
+   "nacional": true
+  },
+  {
+   "id": "02-usp-medicina-s-o-paulo-ribeir-o-preto-bauru-sp",
+   "instituicao": "USP — Medicina (São Paulo, Ribeirão Preto, Bauru) (SP)",
+   "processo": "Vestibular Fuvest 2027 (prova própria, 2 fases)",
+   "inscricao": "17/08/2026 a 09/10/2026 (encerrada)",
+   "provas": "1ª fase 01/11/2026 (realizada); convocados e locais da 2ª fase 23/11/2026; 2ª fase 06 e 07/12/2026",
+   "resultado": "1ª chamada 26/01/2027",
+   "fontes": [
+    {
+     "nome": "jornal.usp.br",
+     "url": "https://jornal.usp.br/universidade/fuvest-divulga-cronograma-completo-do-vestibular-da-usp-para-ingresso-em-2027/"
+    },
+    {
+     "nome": "fuvest.br",
+     "url": "https://www.fuvest.br/fuvest-2027-fuvest-divulga-datas-da-1a-e-da-2a-fase-do-vestibular-2027/"
+    }
+   ],
+   "fonte_texto": "https://jornal.usp.br/universidade/fuvest-divulga-cronograma-completo-do-vestibular-da-usp-para-ingresso-em-2027/ ; https://www.fuvest.br/fuvest-2027-fuvest-divulga-datas-da-1a-e-da-2a-fase-do-vestibular-2027/",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial USP/Fuvest) | obs: Medicina USP não consta nas ofertas do Sisu 2026 (relatório MEC); ingresso pela Fuvest.",
+   "siglas": [
+    "USP"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "03-unicamp-medicina-campinas-sp",
+   "instituicao": "Unicamp — Medicina (Campinas) (SP)",
+   "processo": "Vestibular Unicamp 2027 (Comvest, 2 fases)",
+   "inscricao": "03/08/2026 a 08/09/2026 (prorrogada de 31/08; encerrada)",
+   "provas": "1ª fase 18/10/2026 (realizada; 13.516 convocados, lista divulgada antecipadamente em 12/11/2026); locais da 2ª fase 23/11/2026; 2ª fase 29 e 30/11/2026",
+   "resultado": "1ª chamada 25/01/2027 (até 15h)",
+   "fontes": [
+    {
+     "nome": "comvest.unicamp.br",
+     "url": "https://www.comvest.unicamp.br/ingresso-2027/vestibular-2027/"
+    }
+   ],
+   "fonte_texto": "https://www.comvest.unicamp.br/ingresso-2027/vestibular-2027/",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial Comvest) | obs: A página oficial publica \"Notas de corte por curso\" da 1ª fase 2027 (PDF/consulta) — não coletadas aqui por serem da 1ª fase em andamento.",
+   "siglas": [
+    "UNICAMP"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "04-unesp-medicina-botucatu-sp",
+   "instituicao": "Unesp — Medicina (Botucatu) (SP)",
+   "processo": "Vestibular Unesp 2027 (Vunesp, 2 fases)",
+   "inscricao": "encerrada (prorrogada até 26/10/2026, 18h — fonte secundária); página oficial Vunesp: \"Período Encerrado\"",
+   "provas": "1ª fase 22/11/2026 (página oficial Vunesp); 2ª fase 13 e 14/12/2026 (fonte secundária)",
+   "resultado": "resultado da 1ª fase/locais 2ª fase 07/12/2026 e resultado final 27/01/2027 (fonte secundária)",
+   "fontes": [
+    {
+     "nome": "vunesp.com.br",
+     "url": "https://www.vunesp.com.br/vnsp2514"
+    },
+    {
+     "nome": "vestibulares.estrategia.com",
+     "url": "https://vestibulares.estrategia.com/portal/noticias/vestibular-unesp-2027-inscricoes-terminam-hoje-26/"
+    }
+   ],
+   "fonte_texto": "https://www.vunesp.com.br/vnsp2514 ; https://vestibulares.estrategia.com/portal/noticias/vestibular-unesp-2027-inscricoes-terminam-hoje-26/",
+   "acesso": "13/11/2026",
+   "status": "parcial: 1ª fase confirmada em página oficial; demais datas em fonte secundária — confirmar no edital Vunesp | obs: 85 vagas de Medicina em Botucatu segundo fonte secundária.",
+   "siglas": [
+    "UNESP"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "05-unifesp-medicina-s-o-paulo-sp",
+   "instituicao": "Unifesp — Medicina (São Paulo) (SP)",
+   "processo": "Processo Seletivo Misto 2027 (nota do ENEM 2026 + provas complementares Unifesp; fora do Sisu)",
+   "inscricao": "16/10/2026 10h a 13/11/2026 17h (encerra hoje)",
+   "provas": "ENEM 08 e 15/11/2026; provas complementares 17 e 18/12/2026 (datas estipuladas, sujeitas a atualização)",
+   "resultado": "não verificado (não consta no cronograma oficial consultado)",
+   "fontes": [
+    {
+     "nome": "ingresso.unifesp.br",
+     "url": "https://ingresso.unifesp.br/informacoes-fixas/informacoes-fixas-misto/cronograma-sistema-misto"
+    }
+   ],
+   "fonte_texto": "https://ingresso.unifesp.br/informacoes-fixas/informacoes-fixas-misto/cronograma-sistema-misto",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial Unifesp) | obs: Unifesp não participou do Sisu 2026 em Medicina; corte de ano anterior: não verificado.",
+   "siglas": [
+    "UNIFESP"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "06-famerp-medicina-s-o-jos-do-rio-preto-sp",
+   "instituicao": "FAMERP — Medicina (São José do Rio Preto) (SP)",
+   "processo": "Vestibular FAMERP 2027 (Vunesp; edital G.D.G nº 041/2026; não adere a Sisu/ENEM)",
+   "inscricao": "31/08/2026 a 05/11/2026 (encerrada)",
+   "provas": "10 e 11/12/2026, 13h (Bauru, Campinas, Ribeirão Preto, São José do Rio Preto, São José dos Campos, São Paulo)",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "famerp.br",
+     "url": "https://www.famerp.br/index.php/vestibular/"
+    },
+    {
+     "nome": "famerp.br",
+     "url": "https://www.famerp.br/index.php/2026/11/05/famerp-entra-na-reta-final-de-inscricoes-para-tres-processos-seletivos-na-area-da-saude/"
+    }
+   ],
+   "fonte_texto": "https://www.famerp.br/index.php/vestibular/ ; https://www.famerp.br/index.php/2026/11/05/famerp-entra-na-reta-final-de-inscricoes-para-tres-processos-seletivos-na-area-da-saude/",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial FAMERP)",
+   "siglas": [
+    "FAMERP"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "07-famema-medicina-mar-lia-sp",
+   "instituicao": "FAMEMA — Medicina (Marília) (SP)",
+   "processo": "Vestibular FAMEMA 2027 (Vunesp; fase única; também SISU na instituição para Enfermagem/Medicina conforme quadro de vagas)",
+   "inscricao": "29/09/2026 a 23/10/2026, R$ 210,00 (encerrada)",
+   "provas": "20/11/2026 (fase única: 8 discursivas Química/Biologia + 40 objetivas + redação)",
+   "resultado": "22/01/2027 (fonte secundária — Estratégia/edital espelhado); não confirmado na página oficial",
+   "fontes": [
+    {
+     "nome": "famema.br",
+     "url": "https://www.famema.br/academico/vestibular/"
+    },
+    {
+     "nome": "vunesp.com.br",
+     "url": "https://www.vunesp.com.br/FMMA2601"
+    }
+   ],
+   "fonte_texto": "https://www.famema.br/academico/vestibular/ ; https://www.vunesp.com.br/FMMA2601",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial FAMEMA) — resultado: fonte secundária | obs: 80 vagas de Medicina.",
+   "siglas": [
+    "FAMEMA"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "08-fmj-faculdade-de-medicina-de-jundia-sp",
+   "instituicao": "FMJ — Faculdade de Medicina de Jundiaí (SP)",
+   "processo": "Vestibular FMJ 2027 (Vunesp); instituição municipal, curso PAGO",
+   "inscricao": "29/06/2026 a 25/08/2026 (encerrada), taxa R$ 370",
+   "provas": "20/09/2026, 14h–19h (realizada; Jundiaí ou São Paulo)",
+   "resultado": "23/10/2026 (divulgado — conforme página Vunesp/busca)",
+   "fontes": [
+    {
+     "nome": "vunesp.com.br",
+     "url": "https://www.vunesp.com.br/FMJU2601"
+    },
+    {
+     "nome": "fmj.br",
+     "url": "https://fmj.br/2026/06/29/inscricoes-abertas-para-vestibular-2027/"
+    }
+   ],
+   "fonte_texto": "https://www.vunesp.com.br/FMJU2601 ; https://fmj.br/2026/06/29/inscricoes-abertas-para-vestibular-2027/",
+   "acesso": "13/11/2026",
+   "status": "parcial (datas lidas em resumo de busca sobre páginas oficiais Vunesp/FMJ; PDF do edital não aberto) | obs: Cobra mensalidade (R$ 9.500 em 2026, segundo fonte secundária). 120 vagas.",
+   "siglas": [
+    "FMJ"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "09-fmpfm-faculdade-de-medicina-franco-montoro-mogi-gua-u-sp",
+   "instituicao": "FMPFM — Faculdade de Medicina Franco Montoro (Mogi Guaçu) (SP)",
+   "processo": "Processo Seletivo 1º sem/2027 (IPEFAE); instituição municipal, curso PAGO",
+   "inscricao": "24/08/2026 a 26/10/2026 (encerrada), taxa R$ 160",
+   "provas": "31/10/2026, 13h30 (Mogi Guaçu) — realizada",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "ipefae.selecao.net.br",
+     "url": "https://ipefae.selecao.net.br/informacoes/265/"
+    },
+    {
+     "nome": "anexos-r2.selecao.net.br",
+     "url": "https://anexos-r2.selecao.net.br/uploads/268/concursos/265/anexos/d706b0c0-d21d-4684-ab62-9007de455317.pdf"
+    }
+   ],
+   "fonte_texto": "https://ipefae.selecao.net.br/informacoes/265/ ; https://anexos-r2.selecao.net.br/uploads/268/concursos/265/anexos/d706b0c0-d21d-4684-ab62-9007de455317.pdf",
+   "acesso": "13/11/2026",
+   "status": "parcial (datas em resumo de busca sobre página IPEFAE/edital; PDF não aberto) | obs: Cobra mensalidade (R$ 8.855,78 em 2025, fonte secundária). 60 vagas.",
+   "siglas": [
+    "FMPFM"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "10-furb-universidade-regional-de-blumenau-medicina-blumenau-tam",
+   "instituicao": "FURB — Universidade Regional de Blumenau (Medicina Blumenau; também Timbó, não listada no universo) (SC)",
+   "processo": "Vestibular ACAFE de Verão 2027 — Medicina; instituição municipal/comunitária, curso PAGO",
+   "inscricao": "01/09/2026 a 29/09/2026 (encerrada), taxa R$ 400",
+   "provas": "22/11/2026, 13h20–18h20",
+   "resultado": "11/12/2026 a partir das 16h",
+   "fontes": [
+    {
+     "nome": "acafe.org.br",
+     "url": "https://acafe.org.br/concurso/vestibular/2027/1/site/"
+    },
+    {
+     "nome": "furb.br",
+     "url": "https://www.furb.br/pt/noticias/furb-oferece-80-vagas-para-medicina-pelo-vestibular-acafe-de-verao-2027"
+    }
+   ],
+   "fonte_texto": "https://acafe.org.br/concurso/vestibular/2027/1/site/ ; https://www.furb.br/pt/noticias/furb-oferece-80-vagas-para-medicina-pelo-vestibular-acafe-de-verao-2027",
+   "acesso": "13/11/2026",
+   "status": "parcial (datas lidas em resumo de busca sobre páginas oficiais ACAFE/FURB) | obs: 80 vagas (40 Blumenau + 40 Timbó). Mensalidade R$ 11.663,40 (fonte oficial FURB via busca).",
+   "siglas": [
+    "FURB"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "11-unirv-fesurv-universidade-de-rio-verde-rio-verde-aparecida-d",
+   "instituicao": "UniRV/FESURV — Universidade de Rio Verde (Rio Verde, Aparecida de Goiânia, Goianésia, Formosa, Luziânia) (GO)",
+   "processo": "Processos seletivos Medicina UniRV 2027/1 (vestibular presencial em Rio Verde/Aparecida; nota ENEM em Goianésia, Formosa, Luziânia); instituição municipal, curso PAGO",
+   "inscricao": "Luziânia/Formosa/Goianésia (ENEM 2021–2025, média ≥ 450): 05/10/2026 a 16/11/2026, taxa R$ 180; demais campi: não verificado",
+   "provas": "Rio Verde 23/11/2026; Aparecida de Goiânia 24/11/2026; Formosa 26/11/2026; Luziânia 27/11/2026 (fonte secundária p/ Formosa e Luziânia); Goianésia: só nota ENEM",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "vestibularunirv.com.br",
+     "url": "https://www.vestibularunirv.com.br/vest/vestibular/index.php?id=370"
+    },
+    {
+     "nome": "vestibularunirv.com.br",
+     "url": "https://www.vestibularunirv.com.br/unirv/vest/fckfiles/files/EDITAL%2018-2026%20-%20Processo%20Seletivo%20Medicina%20UniRV%20-%202027-1-%20ENEM%20-%20Campus%20Goian%C3%A9sia.pdf"
+    },
+    {
+     "nome": "vestibularunirv.com.br",
+     "url": "https://www.vestibularunirv.com.br/unirv/vest/fckfiles/files/EDITAL%2020-2026%20-%20Processo%20Seletivo%20Medicina%20UniRV%20-%202027-1-%20ENEM%20-%20Campus%20Luzi%C3%A2nia.pdf"
+    }
+   ],
+   "fonte_texto": "https://www.vestibularunirv.com.br/vest/vestibular/index.php?id=370 ; https://www.vestibularunirv.com.br/unirv/vest/fckfiles/files/EDITAL%2018-2026%20-%20Processo%20Seletivo%20Medicina%20UniRV%20-%202027-1-%20ENEM%20-%20Campus%20Goian%C3%A9sia.pdf ; https://www.vestibularunirv.com.br/unirv/vest/fckfiles/files/EDITAL%2020-2026%20-%20Processo%20Seletivo%20Medicina%20UniRV%20-%202027-1-%20ENEM%20-%20Campus%20Luzi%C3%A2nia.pdf",
+   "acesso": "13/11/2026",
+   "status": "parcial (resumos de busca sobre páginas/editais oficiais UniRV; editais não lidos integralmente) | obs: Cobra mensalidade (~R$ 5.418,13, referência 2026, a ser reajustada).",
+   "siglas": [
+    "FESURV"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "12-unicerrado-centro-universit-rio-de-goiatuba-go",
+   "instituicao": "UniCerrado — Centro Universitário de Goiatuba (GO)",
+   "processo": "Vestibular Medicina 2027/1 (Vunesp); instituição municipal, curso PAGO",
+   "inscricao": "encerrada em 29/10/2026",
+   "provas": "22/11/2026 (Goiatuba)",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "unicerrado.edu.br",
+     "url": "https://unicerrado.edu.br/editais/vestibular-medicina-2027-01/"
+    },
+    {
+     "nome": "unicerrado.edu.br",
+     "url": "https://unicerrado.edu.br/wp-content/uploads/edital-vestibular-medicina-2027.1-vunesp.pdf"
+    }
+   ],
+   "fonte_texto": "https://unicerrado.edu.br/editais/vestibular-medicina-2027-01/ ; https://unicerrado.edu.br/wp-content/uploads/edital-vestibular-medicina-2027.1-vunesp.pdf",
+   "acesso": "13/11/2026",
+   "status": "parcial (datas em resumo de busca sobre página/edital oficial; PDF não aberto) | obs: Mensalidade R$ 6.347,81 (com desconto) / R$ 7.053,12 (sem desconto).",
+   "siglas": [
+    "Unicerrado"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "13-unifimes-centro-universit-rio-de-mineiros-trindade-e-mineiro",
+   "instituicao": "UNIFIMES — Centro Universitário de Mineiros (Trindade e Mineiros) (GO)",
+   "processo": "Vestibular Medicina 2027/1 (Edital nº 08/2026 — Trindade; Mineiros); instituição municipal, curso PAGO",
+   "inscricao": "Trindade 15/07/2026 a 03/09/2026; Mineiros 15/07/2026 a 24/09/2026 (ambas encerradas)",
+   "provas": "Trindade 27/09/2026 (13h–18h); Mineiros 18/10/2026 (13h–18h) — realizadas",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "unifimes.edu.br",
+     "url": "https://unifimes.edu.br/vestibular-medicina-2027-1-trindade-go/"
+    },
+    {
+     "nome": "unifimes.edu.br",
+     "url": "https://unifimes.edu.br/vestibular-medicina-2027-1-mineiros-go/"
+    },
+    {
+     "nome": "unifimes.edu.br",
+     "url": "https://unifimes.edu.br/wp-content/uploads/2026/07/Edital-no-08-2026-Trindade-1o-Sem-de-2027.pdf"
+    }
+   ],
+   "fonte_texto": "https://unifimes.edu.br/vestibular-medicina-2027-1-trindade-go/ ; https://unifimes.edu.br/vestibular-medicina-2027-1-mineiros-go/ ; https://unifimes.edu.br/wp-content/uploads/2026/07/Edital-no-08-2026-Trindade-1o-Sem-de-2027.pdf",
+   "acesso": "13/11/2026",
+   "status": "parcial (resumo de busca sobre páginas oficiais; PDF não aberto) | obs: Mensalidade Trindade R$ 7.964,00. 50 vagas em Trindade.",
+   "siglas": [
+    "UNIFIMES"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "14-uerj-medicina-rio-de-janeiro-e-cabo-frio-rj",
+   "instituicao": "UERJ — Medicina (Rio de Janeiro e Cabo Frio) (RJ)",
+   "processo": "Vestibular Estadual UERJ 2027 (Exames de Qualificação + Exame Discursivo)",
+   "inscricao": "Exame Discursivo: 12/09/2026 a 07/10/2026 (página oficial UERJ); 1º Exame de Qualificação teve inscrição até 07/05/2026",
+   "provas": "Exame Discursivo 29/11/2026, 9h (fonte secundária Clique Vestibular; não consta na página oficial aberta)",
+   "resultado": "listagem de notas 18/12/2026; resultado final 14/01/2027 (fonte secundária)",
+   "fontes": [
+    {
+     "nome": "uerj.br",
+     "url": "https://www.uerj.br/noticia/vestibular-uerj-2027-periodo-de-inscricoes-para-o-exame-discursivo-vai-de-12-de-setembro-a-7-de-outubro/"
+    },
+    {
+     "nome": "vestibular.uerj.br",
+     "url": "https://www.vestibular.uerj.br/"
+    },
+    {
+     "nome": "cliquevestibular.com.br",
+     "url": "https://cliquevestibular.com.br/uerj-2027-locais-de-prova-do-exame-discursivo-ja-estao-disponiveis-prova-e-em-29-11/"
+    }
+   ],
+   "fonte_texto": "https://www.uerj.br/noticia/vestibular-uerj-2027-periodo-de-inscricoes-para-o-exame-discursivo-vai-de-12-de-setembro-a-7-de-outubro/ ; https://www.vestibular.uerj.br/ ; https://cliquevestibular.com.br/uerj-2027-locais-de-prova-do-exame-discursivo-ja-estao-disponiveis-prova-e-em-29-11/",
+   "acesso": "13/11/2026",
+   "status": "parcial (inscrição: oficial; prova e resultado: fonte secundária) | obs: Edital de convocação do Exame Discursivo lista Medicina (Rio) e Medicina (Cabo Frio). Sisu: UERJ não consta nas ofertas de Medicina Sisu 2026.",
+   "siglas": [
+    "UERJ"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "15-uel-londrina-pr",
+   "instituicao": "UEL — Londrina (PR)",
+   "processo": "Vestibular UEL 2027 (COPS)",
+   "inscricao": "encerrada em 17/08/2026",
+   "provas": "Conhecimentos gerais e redação 18/10/2026 (confirmado na página oficial COPS); específicas 19/10/2026 (busca)",
+   "resultado": "08/12/2026, 12h (busca; não conferido na página oficial)",
+   "fontes": [
+    {
+     "nome": "sites.uel.br",
+     "url": "https://sites.uel.br/vestibular/cronograma/"
+    },
+    {
+     "nome": "cops.uel.br",
+     "url": "https://www.cops.uel.br/"
+    }
+   ],
+   "fonte_texto": "https://sites.uel.br/vestibular/cronograma/ ; https://www.cops.uel.br/",
+   "acesso": "13/11/2026",
+   "status": "parcial (1º dia confirmado em página oficial; demais datas em resumo de busca) | obs: 40 vagas no sistema universal (busca).",
+   "siglas": [
+    "UEL"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "16-uepg-ponta-grossa-pr",
+   "instituicao": "UEPG — Ponta Grossa (PR)",
+   "processo": "Vestibular UEPG 2026 (ingresso 2027)",
+   "inscricao": "01/09/2026 a 30/09/2026 (encerrada)",
+   "provas": "13/12/2026 (manhã e tarde)",
+   "resultado": "até 05/01/2027",
+   "fontes": [
+    {
+     "nome": "www2.uepg.br",
+     "url": "https://www2.uepg.br/cps/vestibular-2026/"
+    }
+   ],
+   "fonte_texto": "https://www2.uepg.br/cps/vestibular-2026/",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial CPS/UEPG) | obs: Nota: o vestibular chama-se \"2026\" mas dá ingresso em 2027.",
+   "siglas": [
+    "UEPG"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "17-unicentro-guarapuava-pr",
+   "instituicao": "Unicentro — Guarapuava (PR)",
+   "processo": "Vestibular Unicentro 2027",
+   "inscricao": "03/08/2026 a 03/09/2026 (encerrada)",
+   "provas": "11/10/2026 (realizada)",
+   "resultado": "13/11/2026 (hoje — divulgação \"CLIQUE E CONFIRA APROVADOS\" na página oficial)",
+   "fontes": [
+    {
+     "nome": "www3.unicentro.br",
+     "url": "https://www3.unicentro.br/vestibular/"
+    }
+   ],
+   "fonte_texto": "https://www3.unicentro.br/vestibular/",
+   "acesso": "13/11/2026",
+   "status": "verificado (página oficial Unicentro) | obs: 14 vagas universais (busca).",
+   "siglas": [
+    "Unicentro"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "18-uema-caxias-ma",
+   "instituicao": "UEMA — Caxias (MA)",
+   "processo": "PAES 2027 (Edital nº 158/2026-GR/UEMA, etapa única)",
+   "inscricao": "22/06/2026 a 31/07/2026 (prorrogada; Retificação nº 03)",
+   "provas": "22/11/2026 (etapa única)",
+   "resultado": "28/01/2027 (previsão do edital)",
+   "fontes": [
+    {
+     "nome": "paes.uema.br",
+     "url": "https://www.paes.uema.br/paes-2027/"
+    },
+    {
+     "nome": "uema.br",
+     "url": "https://www.uema.br/wp-content/uploads/2026/06/Edital_n_158-2026-GR-UEMA_-_PAES_2027.pdf"
+    }
+   ],
+   "fonte_texto": "https://www.paes.uema.br/paes-2027/ ; https://www.uema.br/wp-content/uploads/2026/06/Edital_n_158-2026-GR-UEMA_-_PAES_2027.pdf",
+   "acesso": "13/11/2026",
+   "status": "verificado (edital/página oficial UEMA)",
+   "siglas": [
+    "UEMA"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "19-uemasul-imperatriz-ma",
+   "instituicao": "UEMASUL — Imperatriz (MA)",
+   "processo": "PAES 2027 (mesmo edital UEMA nº 158/2026)",
+   "inscricao": "22/06/2026 a 31/07/2026 (prorrogada)",
+   "provas": "22/11/2026, 13h30–18h30 (horário: busca)",
+   "resultado": "28/01/2027 (previsão do edital)",
+   "fontes": [
+    {
+     "nome": "paes.uema.br",
+     "url": "https://www.paes.uema.br/paes-2027/"
+    },
+    {
+     "nome": "uema.br",
+     "url": "https://www.uema.br/wp-content/uploads/2026/06/Edital_n_158-2026-GR-UEMA_-_PAES_2027.pdf"
+    }
+   ],
+   "fonte_texto": "https://www.paes.uema.br/paes-2027/ ; https://www.uema.br/wp-content/uploads/2026/06/Edital_n_158-2026-GR-UEMA_-_PAES_2027.pdf",
+   "acesso": "13/11/2026",
+   "status": "verificado (datas do edital); parcial para o horário | obs: Medicina com 40 vagas, 2º semestre 2027 (busca).",
+   "siglas": [
+    "UEMASUL"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "20-uece-fortaleza-quixeramobim-e-crate-s-ce",
+   "instituicao": "UECE — Fortaleza, Quixeramobim e Crateús (CE)",
+   "processo": "Vestibular UECE 2027.1 (CEV, 2 fases)",
+   "inscricao": "01/09/2026 a 15/09/2026 (encerrada)",
+   "provas": "1ª fase 18/10/2026 (realizada); 2ª fase 06 e 07/12/2026",
+   "resultado": "Resultado final 15/01/2027",
+   "fontes": [
+    {
+     "nome": "uece.br",
+     "url": "https://www.uece.br/cev/"
+    }
+   ],
+   "fonte_texto": "https://www.uece.br/cev/ (cronograma de eventos do Vestibular 2027.1, PDF lido integralmente)",
+   "acesso": "13/11/2026",
+   "status": "verificado (cronograma oficial CEV/UECE)",
+   "siglas": [
+    "UECE"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "21-urca-crato-ce",
+   "instituicao": "URCA — Crato (CE)",
+   "processo": "Processo Seletivo 2027.1 (CEV/URCA, Edital nº 20/2026-GR)",
+   "inscricao": "não verificado (página aberta só lista resultados das inscrições, 17/09 e 28/09/2026)",
+   "provas": "01/11/2026 (Provas I e II — página oficial)",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "urca.br",
+     "url": "https://www.urca.br/cev/processo-seletivo-2027-1/"
+    }
+   ],
+   "fonte_texto": "https://www.urca.br/cev/processo-seletivo-2027-1/",
+   "acesso": "13/11/2026",
+   "status": "parcial (página oficial; faltam inscrição e resultado)",
+   "siglas": [
+    "URCA"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "22-ueg-itumbiara-go",
+   "instituicao": "UEG — Itumbiara (GO)",
+   "processo": "Vestibular UEG 2027/1 — Medicina (Edital nº 1, de 03/09/2026)",
+   "inscricao": "04/09/2026 a 05/10/2026 (pagamento até 06/10/2026)",
+   "provas": "22/11/2026 (Goiânia, Itumbiara e/ou Anápolis)",
+   "resultado": "resultado preliminar 18/12/2026; resultado final 20/01/2027 (conforme busca sobre a página UEG)",
+   "fontes": [
+    {
+     "nome": "vestibular.ueg.br",
+     "url": "https://vestibular.ueg.br/202701_medicina/"
+    },
+    {
+     "nome": "ns.ueg.br",
+     "url": "https://ns.ueg.br/pdfs/processos/396/Edital-vestibular-UEG-Medicina2027-1.pdf"
+    }
+   ],
+   "fonte_texto": "https://vestibular.ueg.br/202701_medicina/ ; https://ns.ueg.br/pdfs/processos/396/Edital-vestibular-UEG-Medicina2027-1.pdf",
+   "acesso": "13/11/2026",
+   "status": "verificado (edital oficial); resultado final: confirmado só em resumo de busca",
+   "siglas": [
+    "UEG"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "23-ufpa-bel-m-e-altamira-pa",
+   "instituicao": "UFPA — Belém e Altamira (PA)",
+   "processo": "Processo Seletivo UFPA 2027 (PS UFPA 2027: nota do ENEM 2026, sem prova própria)",
+   "inscricao": "14/10/2026 a 23/11/2026 (ceps.ufpa.br; taxa R$ 110)",
+   "provas": "sem prova própria: usa ENEM 2026 (mín.: redação ≥ 500; ≥ 400 nas áreas, segundo notícia oficial UFPA)",
+   "resultado": "não verificado (data não publicada na notícia oficial)",
+   "fontes": [
+    {
+     "nome": "ufpa.br",
+     "url": "https://ufpa.br/ufpa-divulga-edital-do-processo-seletivo-2027/"
+    },
+    {
+     "nome": "ceps.ufpa.br",
+     "url": "https://ceps.ufpa.br"
+    }
+   ],
+   "fonte_texto": "https://ufpa.br/ufpa-divulga-edital-do-processo-seletivo-2027/ ; https://ceps.ufpa.br",
+   "acesso": "13/11/2026",
+   "status": "verificado (notícia oficial UFPA) para inscrição/base; resultado não verificado | obs: Medicina Altamira: presença no PS 2027 não conferida individualmente no edital.",
+   "siglas": [
+    "UFPA"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "24-uepa-bel-m-santar-m-e-marab-pa",
+   "instituicao": "UEPA — Belém, Santarém e Marabá (PA)",
+   "processo": "PROSEL 2027 (Edital nº 130/2026-UEPA; nota do ENEM 2026, sem prova própria)",
+   "inscricao": "11/09/2026 a 28/10/2026 (II Errata; página PROSEL cita início em 10/09)",
+   "provas": "sem prova própria: usa ENEM 2026; homologação definitiva das inscrições 24/11/2026",
+   "resultado": "não verificado (2027, sem data publicada)",
+   "fontes": [
+    {
+     "nome": "prosel.uepa.br",
+     "url": "https://prosel.uepa.br/prosel2027/"
+    },
+    {
+     "nome": "prosel.uepa.br",
+     "url": "https://prosel.uepa.br/wp-content/uploads/ii-errrata_prosel2027_cronograma.pdf"
+    }
+   ],
+   "fonte_texto": "https://prosel.uepa.br/prosel2027/ ; https://prosel.uepa.br/wp-content/uploads/ii-errrata_prosel2027_cronograma.pdf",
+   "acesso": "13/11/2026",
+   "status": "verificado (cronograma oficial) para inscrição; resultado não verificado",
+   "siglas": [
+    "UEPA"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "25-unir-porto-velho-ro",
+   "instituicao": "UNIR — Porto Velho (RO)",
+   "processo": "Processo Seletivo UNIR (nota do ENEM)",
+   "inscricao": "não verificado: nenhum edital 2027 localizado (último: PS UNIR 2026, 40 vagas, ENEM 2016–2025)",
+   "provas": "não verificado",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "processoseletivo.unir.br",
+     "url": "https://processoseletivo.unir.br/certame/exibir/605"
+    },
+    {
+     "nome": "editais.unir.br",
+     "url": "https://editais.unir.br/certame/lista/4"
+    }
+   ],
+   "fonte_texto": "https://processoseletivo.unir.br/certame/exibir/605 ; https://editais.unir.br/certame/lista/4",
+   "acesso": "13/11/2026",
+   "status": "não verificado | obs: Portal oficial consultado só via busca; reconferir em editais.unir.br.",
+   "siglas": [
+    "UNIR"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "26-uea-manaus-am",
+   "instituicao": "UEA — Manaus (AM)",
+   "processo": "Vestibular UEA 2027 (acesso 2027; Vunesp)",
+   "inscricao": "13/07/2026 a 13/08/2026 (encerrada)",
+   "provas": "12 e 13/10/2026 (realizadas)",
+   "resultado": "27/11/2026",
+   "fontes": [
+    {
+     "nome": "vunesp.com.br",
+     "url": "https://www.vunesp.com.br/UEAM2601"
+    },
+    {
+     "nome": "uea.edu.br",
+     "url": "https://www.uea.edu.br/index.php/vestibular-2/"
+    }
+   ],
+   "fonte_texto": "https://www.vunesp.com.br/UEAM2601 ; https://www.uea.edu.br/index.php/vestibular-2/",
+   "acesso": "13/11/2026",
+   "status": "parcial (páginas oficiais não renderizadas pela box; datas conferidas em reportagem Brasil Escola sobre o edital — fonte secundária) | obs: Medicina na UEA: confirmar no edital oficial.",
+   "siglas": [
+    "UEA"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "27-ufam-coari-interior-am",
+   "instituicao": "UFAM — Coari (interior) (AM)",
+   "processo": "PSI UFAM 2027 (Processo Seletivo do Interior; Edital 11/2026-GR; sem ENEM)",
+   "inscricao": "05/08/2026 a 21/08/2026 (encerrada), taxa R$ 105",
+   "provas": "20 e 21/09/2026 (realizadas)",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "edoc.ufam.edu.br",
+     "url": "https://edoc.ufam.edu.br/bitstream/123456789/12041/1/Edital%2011%20de%202026.pdf"
+    },
+    {
+     "nome": "psconcursos.ufam.edu.br",
+     "url": "https://psconcursos.ufam.edu.br"
+    }
+   ],
+   "fonte_texto": "https://edoc.ufam.edu.br/bitstream/123456789/12041/1/Edital%2011%20de%202026.pdf ; https://psconcursos.ufam.edu.br",
+   "acesso": "13/11/2026",
+   "status": "parcial (resumo de busca sobre edital oficial; PDF não aberto) | obs: 36 vagas (18 ampla concorrência).",
+   "siglas": [
+    "UFAM"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "28-unitins-augustin-polis-to",
+   "instituicao": "UNITINS — Augustinópolis (TO)",
+   "processo": "Vestibular Unitins 2027",
+   "inscricao": "25/09/2026 a 26/10/2026 (encerrada), taxa R$ 120",
+   "provas": "06/12/2026 (Araguaína, Augustinópolis ou Palmas)",
+   "resultado": "preliminar 07/01/2027; definitivo previsto 22/01/2027",
+   "fontes": [
+    {
+     "nome": "unitins.br",
+     "url": "https://www.unitins.br/nportal/vestibular"
+    },
+    {
+     "nome": "unitins.br",
+     "url": "https://www.unitins.br/nPortal/medicinaaugustinopolis"
+    }
+   ],
+   "fonte_texto": "https://www.unitins.br/nportal/vestibular ; https://www.unitins.br/nPortal/medicinaaugustinopolis",
+   "acesso": "13/11/2026",
+   "status": "parcial (resumo de busca sobre páginas oficiais) | obs: 41 vagas, turno integral.",
+   "siglas": [
+    "UNITINS"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "29-unb-bras-lia-df",
+   "instituicao": "UnB — Brasília (DF)",
+   "processo": "Vestibular UnB 2027 (Cebraspe; vagas do 2º semestre de 2027) + Acesso Enem; PAS e Sisu para o 1º semestre",
+   "inscricao": "28/08/2026 a 21/09/2026 (encerrada)",
+   "provas": "21/11/2026 (provas I, II e redação) e 22/11/2026 (prova III)",
+   "resultado": "12/02/2027 (edital de selecionados e convocação para 1ª chamada)",
+   "fontes": [
+    {
+     "nome": "cebraspe.org.br",
+     "url": "https://www.cebraspe.org.br/vestibulares/vestunb_27"
+    },
+    {
+     "nome": "cdn.cebraspe.org.br",
+     "url": "https://cdn.cebraspe.org.br/vestibulares/vestunb_27/arquivos/EFB9C7BCA02CFC57B7F4128EA22079B33CE4868ADE02FE086C6AA3614280B124.pdf"
+    },
+    {
+     "nome": "noticias.unb.br",
+     "url": "https://noticias.unb.br/institucional/8613-cepe-define-calendario-academico-de-2027-e-inclusao-do-sisu-em-todos-os-processos-seletivos-de-primeiro-semestre"
+    }
+   ],
+   "fonte_texto": "https://www.cebraspe.org.br/vestibulares/vestunb_27 ; https://cdn.cebraspe.org.br/vestibulares/vestunb_27/arquivos/EFB9C7BCA02CFC57B7F4128EA22079B33CE4868ADE02FE086C6AA3614280B124.pdf ; https://noticias.unb.br/institucional/8613-cepe-define-calendario-academico-de-2027-e-inclusao-do-sisu-em-todos-os-processos-seletivos-de-primeiro-semestre",
+   "acesso": "13/11/2026",
+   "status": "verificado (Edital nº 1 do Vestibular UnB 2027 — Cebraspe) | obs: Cepe aprovou Sisu (foco nacional) + PAS para o 1º semestre de 2027 por faixas de cursos; se Medicina entra no Sisu 2027: não verificado.",
+   "siglas": [
+    "UNB"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "30-uncisal-macei-al",
+   "instituicao": "UNCISAL — Maceió (AL)",
+   "processo": "PROSEL UNCISAL (nota do ENEM; edital 2027 ainda não localizado)",
+   "inscricao": "não verificado",
+   "provas": "sem prova própria (ENEM); edital 2027 não divulgado nas fontes consultadas",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "uncisal.edu.br",
+     "url": "https://uncisal.edu.br/ingresso"
+    },
+    {
+     "nome": "selecao.uncisal.edu.br",
+     "url": "https://selecao.uncisal.edu.br/media/anexos/2025/11/19/EDITAL_PROSEL_-_UNCISAL_2026.pdf"
+    }
+   ],
+   "fonte_texto": "https://uncisal.edu.br/ingresso ; https://selecao.uncisal.edu.br/media/anexos/2025/11/19/EDITAL_PROSEL_-_UNCISAL_2026.pdf",
+   "acesso": "13/11/2026",
+   "status": "não verificado | obs: Edital 2026 usado como último processo conhecido.",
+   "siglas": [
+    "UNCISAL"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "31-ufac-rio-branco-ac",
+   "instituicao": "UFAC — Rio Branco (AC)",
+   "processo": "Vestibular UFAC 2027 — Medicina (Cebraspe; Edital nº 1, prova própria)",
+   "inscricao": "12/11/2026 a 07/12/2026, até 18h (Brasília)",
+   "provas": "24/01/2027 (CH e LC) e 31/01/2027 (CN e MT) + redação",
+   "resultado": "resultado final e 1ª chamada 09/04/2027 (cronograma sujeito a alteração)",
+   "fontes": [
+    {
+     "nome": "cebraspe.org.br",
+     "url": "https://www.cebraspe.org.br/vestibulares/ufac_27_medicina"
+    },
+    {
+     "nome": "cdn.cebraspe.org.br",
+     "url": "https://cdn.cebraspe.org.br/vestibulares/ufac_27_medicina/arquivos/45F5733B75AE7F8B803B371DB6D7D1CF27884C874548584B41A5DE7C5E2A1310.pdf"
+    }
+   ],
+   "fonte_texto": "https://www.cebraspe.org.br/vestibulares/ufac_27_medicina ; https://cdn.cebraspe.org.br/vestibulares/ufac_27_medicina/arquivos/45F5733B75AE7F8B803B371DB6D7D1CF27884C874548584B41A5DE7C5E2A1310.pdf",
+   "acesso": "13/11/2026",
+   "status": "verificado (edital oficial Cebraspe/UFAC) | obs: Edital pode alterar datas (nota do cronograma).",
+   "siglas": [
+    "UFAC"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "32-uerr-boa-vista-rr",
+   "instituicao": "UERR — Boa Vista (RR)",
+   "processo": "Vestibular UERR 2027 (Cebraspe) e ingresso por ENEM",
+   "inscricao": "29/06/2026 a 20/07/2026 (encerrada)",
+   "provas": "20/09/2026 (realizadas)",
+   "resultado": "resultado final da objetiva e provisório da redação já divulgados (Edital 62/2026); resultado final: não verificado",
+   "fontes": [
+    {
+     "nome": "uerr.edu.br",
+     "url": "https://uerr.edu.br/edital-do-vestibular-da-uerr-traz-ingresso-por-meio-do-enem/"
+    },
+    {
+     "nome": "cebraspe.org.br",
+     "url": "https://www.cebraspe.org.br/vestibulares/uerr_26"
+    }
+   ],
+   "fonte_texto": "https://uerr.edu.br/edital-do-vestibular-da-uerr-traz-ingresso-por-meio-do-enem/ ; https://www.cebraspe.org.br/vestibulares/uerr_26",
+   "acesso": "13/11/2026",
+   "status": "parcial (resumo de busca sobre página oficial) | obs: 30 vagas de Medicina (15 AC, 12 EP, 3 PCD).",
+   "siglas": [
+    "UERR"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "33-unifap-macap-ap",
+   "instituicao": "UNIFAP — Macapá (AP)",
+   "processo": "Processo seletivo de Medicina UNIFAP 2027",
+   "inscricao": "não verificado: nenhum edital 2027 localizado",
+   "provas": "não verificado (há discussão de processo próprio com prova regionalizada, dependente do Conselho Superior)",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "depsec.unifap.br",
+     "url": "https://depsec.unifap.br/concursos/"
+    },
+    {
+     "nome": "agenciaamapa.com.br",
+     "url": "https://www.agenciaamapa.com.br/noticia/34505/governo-do-amapa-e-unifap-discutem-parceria-para-ampliar-acesso-de-alunos-da-rede-publica-ao-curso-de-medicina"
+    }
+   ],
+   "fonte_texto": "https://depsec.unifap.br/concursos/ ; https://www.agenciaamapa.com.br/noticia/34505/governo-do-amapa-e-unifap-discutem-parceria-para-ampliar-acesso-de-alunos-da-rede-publica-ao-curso-de-medicina",
+   "acesso": "13/11/2026",
+   "status": "não verificado | obs: Cuidado: \"UniFAP\" de vestibularmed/Ceará é outra instituição.",
+   "siglas": [
+    "UNIFAP"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "34-uneb-salvador-ba",
+   "instituicao": "UNEB — Salvador (BA)",
+   "processo": "Vestibular UNEB 2027 (Edital nº 082/2026)",
+   "inscricao": "prorrogada até 12/10/2026 (encerrada)",
+   "provas": "13 e 14/12/2026",
+   "resultado": "preliminar classificatório até 10/02/2027; final até 23/02/2027",
+   "fontes": [
+    {
+     "nome": "vestibular2027.uneb.br",
+     "url": "https://vestibular2027.uneb.br/"
+    },
+    {
+     "nome": "vestibular2027.uneb.br",
+     "url": "http://vestibular2027.uneb.br/wp-content/uploads/2026/09/Edital-082_2026-Aviso-142_2026-Processo-Seletivo-Vestibular-UNEB.pdf"
+    }
+   ],
+   "fonte_texto": "https://vestibular2027.uneb.br/ ; http://vestibular2027.uneb.br/wp-content/uploads/2026/09/Edital-082_2026-Aviso-142_2026-Processo-Seletivo-Vestibular-UNEB.pdf",
+   "acesso": "13/11/2026",
+   "status": "parcial (site oficial inacessível pela box; datas em resumo de busca sobre edital/cronograma oficial) | obs: Medicina: 30 vagas por turno (60).",
+   "siglas": [
+    "UNEB"
+   ],
+   "nacional": false
+  },
+  {
+   "id": "35-unemat-c-ceres-sisu-2026-tem-corte-mas-2027-processo-pr-prio",
+   "instituicao": "UNEMAT — Cáceres (Sisu 2026 tem corte, mas 2027 é processo próprio) (MT)",
+   "processo": "Processo Seletivo UNEMAT 2027/1 (Edital 005/2026)",
+   "inscricao": "encerrada em 13/10/2026 (dado herdado do app)",
+   "provas": "22/11/2026 (dado herdado do app)",
+   "resultado": "não verificado",
+   "fontes": [
+    {
+     "nome": "unemat.br",
+     "url": "https://unemat.br/noticias/27-7-2026-vestibular-da-unemat-oferece-2-350-vagas-para-inicio-em-2027"
+    },
+    {
+     "nome": "unemat.br",
+     "url": "https://unemat.br/site/vestibular"
+    }
+   ],
+   "fonte_texto": "https://unemat.br/noticias/27-7-2026-vestibular-da-unemat-oferece-2-350-vagas-para-inicio-em-2027 ; https://unemat.br/site/vestibular",
+   "acesso": "13/11/2026",
+   "status": "não verificado (dados do app, não reconferidos nesta rodada) | obs: Corte Sisu 2026 (786,79) não se aplica ao ciclo 2027.",
+   "siglas": [
+    "UNEMAT"
+   ],
+   "nacional": false
+  }
+ ]
+}
