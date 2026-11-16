@@ -1,0 +1,181 @@
+{
+ "titulo": "Contexto ENEM 2026",
+ "pesquisado_em": "16/11/2026",
+ "paragrafos": [
+  "Pesquisa de 16/11/2026. Não existe tabela oficial de TRI por acertos do ENEM 2026. O que segue são notícias e um dado histórico de 2022.",
+  "O Inep informou em 15/11/2026 que o gabarito oficial dos dois dias sai em 18/11/2026 e os resultados individuais em 18/01/2027. Textos do mesmo dia que ainda falam em gabarito “até 27/11” repetem a regra geral do edital, superada por esse anúncio.",
+  "Sobre Matemática, a opinião dos professores está dividida. A leitura mais frequente descreve uma prova mais trabalhosa que a de 2025: enunciados longos, muita porcentagem e conversão de unidades, pouco tempo. Outros viram nível fácil-médio ou médio-fácil, ou menos questões extremamente difíceis. Natureza foi descrita no padrão recente; Linguagens e Humanas, no nível das edições anteriores.",
+  "A Folha apontou os itens 155 e 159 do caderno azul como passíveis de anulação. Até 16/11/2026 o Inep não tinha se manifestado. Anulação muda o número de questões válidas — e Matemática de 2022 teve 43 itens válidos, não 45.",
+  "O cenário “Matemática no padrão 2022 (estimativa não oficial)” usa o CSV do Prof. Rafael Teixeira (microdados do Inep). Um simulador não oficial (XTRI) também usa 2022 como referência e avisa que isso não é equalização. Não é a nota de 2026, não é previsão de corte e não é probabilidade de aprovação."
+ ],
+ "fontes": [
+  {
+   "veiculo": "Inep (gov.br)",
+   "data": "2026-11-15 20:43",
+   "url": "https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/resultados-do-enem-serao-divulgados-em-18-de-janeiro",
+   "area": "datas",
+   "resumo": "FONTE OFICIAL. Provas em 8 e 15/11/2026; gabaritos dos dois dias em 18/11/2026; resultados individuais em 18/01/2027 (Página do Participante). Reaplicação: pedidos 16 a 20/11, provas em 15 e 16/12. 5,05 milhões de inscrições. Prova do 2º dia: 45 questões de Matemática + 45 de Natureza, 13h30 às 18h30 (Brasília).",
+   "destaque": true
+  },
+  {
+   "veiculo": "Inep (gov.br) - FAQ Enem",
+   "data": "2026-04-24 (atualização da página)",
+   "url": "https://www.gov.br/inep/pt-br/acesso-a-informacao/perguntas-frequentes/exame-nacional-do-ensino-médio-enem",
+   "area": "datas",
+   "resumo": "FONTE OFICIAL. Cronograma: inscrições 25/5 a 12/6/2026; aplicação 8 e 15/11/2026; gabarito até o 10º dia útil após o 2º dia (regra geral). A data específica de 18/11 foi anunciada depois (ver Inep 15/11).",
+   "destaque": false
+  },
+  {
+   "veiculo": "O Globo",
+   "data": "2026-11-15 15:50",
+   "url": "https://oglobo.globo.com/brasil/educacao/enem-e-vestibular/noticia/2026/11/15/nivel-de-exigencia-da-matematica-foi-alto-professores-avaliam-segundo-dia-da-prova-do-enem-2026.ghtml",
+   "area": "Matemática",
+   "resumo": "Rodrigo Fraga (Colégio Andrews): 'nível de exigência foi alto', muita interpretação; caíram tópicos raros (geometria analítica/circunferência, matrizes). Nelson Amado (Elite): prova 'extensa e cansativa'; sem 'textão'/testlet no 2º dia. Natureza: dificuldade padrão. Observação: o texto cita gabarito 'até 27/11' (estimativa da regra geral); a data oficial anunciada depois pelo Inep é 18/11.",
+   "destaque": true
+  },
+  {
+   "veiculo": "O Globo",
+   "data": "2026-11-16",
+   "url": "https://oglobo.globo.com/brasil/educacao/enem-e-vestibular/noticia/2026/11/16/abstencao-alta-e-prova-dificil-saiba-como-foi-o-segundo-dia-do-enem-2026.ghtml",
+   "area": "Matemática",
+   "resumo": "Professores (Elite, SEB Lafaiete AZ): nível de desafio da Matemática 'tem subido a cada ano'; Jeferson Petronilho: 10 das 45 eram fáceis e 15 'bem desafiadoras', prova 'longa e trabalhosa'; quem foi em sequência 'teve muito problema'. Possível anulação de questão (tabela de futebol) segundo Eduardo Izidoro (Cursinho da Poli).",
+   "destaque": false
+  },
+  {
+   "veiculo": "g1",
+   "data": "2026-11-15",
+   "url": "https://g1.globo.com/educacao/enem/2026/noticia/2026/11/15/nivel-de-dificuldade-do-segundo-dia-de-enem-2026.ghtml",
+   "area": "Matemática",
+   "resumo": "Opiniões divididas: Igor Cunha (Bernoulli) viu nível fácil-médio e mais simples que 2025; Sérgio Ghiu (pH) médio-difícil, um pouco acima da média, textos longos; Eduardo Izidoro (Cursinho da Poli) equilibrada, mas com muitas operações. Divergência principal: esforço/tempo, não o conteúdo.",
+   "destaque": true
+  },
+  {
+   "veiculo": "Folha de S.Paulo",
+   "data": "2026-11-15",
+   "url": "https://www1.folha.uol.com.br/educacao/2026/11/enem-2026-tem-matematica-mais-dificil-e-mantem-nivel-em-ciencias-da-natureza-dizem-professores.shtml",
+   "area": "Matemática",
+   "resumo": "Professores do Farias Brito (Pedro Costa, Alexandre Moura): Matemática mais difícil que a de 2025, com distribuição mais equilibrada; forte presença de estatística e geometria; Natureza manteve o nível.",
+   "destaque": true
+  },
+  {
+   "veiculo": "Folha de S.Paulo",
+   "data": "2026-11-15 22:41",
+   "url": "https://www1.folha.uol.com.br/educacao/2026/11/professores-apontam-problemas-em-duas-questoes-de-matematica-do-enem-2026.shtml",
+   "area": "Matemática",
+   "resumo": "Itens 155 (semelhança de retângulos/figura ambígua) e 159 (campeonato de futebol; 150 gols marcados x 145 sofridos) do caderno azul apontados como passíveis de anulação. Inep/MEC não responderam até a publicação. Anulação muda o nº de questões válidas e a escala de acertos.",
+   "destaque": true
+  },
+  {
+   "veiculo": "O Dia",
+   "data": "2026-11-15 19:08",
+   "url": "https://odia.ig.com.br/brasil/2026/11/7322709-enem-2026-matematica-foi-a-prova-mais-dificil-avaliam-professores.html",
+   "area": "Matemática/Natureza",
+   "resumo": "Sérgio Ghiu (pH): Matemática entre média e difícil, complexidade acima da média, enunciados longos, mais tempo até nas fáceis; nível maior que 2025. Química: fácil, uma das menos complexas dos últimos 10 anos (Emmanuel Maciel). Física: padrão. Biologia: fácil-média, itens mais trabalhosos que 2025. Texto cita gabarito 'previsto para 27/11' (desatualizado frente ao Inep).",
+   "destaque": true
+  },
+  {
+   "veiculo": "CNN Brasil",
+   "data": "2026-11-15 16:46 (atual. 21:18)",
+   "url": "https://www.cnnbrasil.com.br/educacao/enem-2026-prova-de-matematica-traz-abaporu-porcentagem-e-geometria/",
+   "area": "Matemática",
+   "resumo": "Texto: 'nível médio-fácil, grau de complexidade um pouco acima da média' (Sérgio Ghiu, pH, que também diz 'um pouco maior' que 2025). Nelson Amado (Elite): 'médio cansativa', mais questões difíceis que 2025 mas fáceis equilibram; cita efeito da pandemia no 3º ano. Poliedro (Vanessa Santos): nível médio. SAS: porcentagem em toda a prova.",
+   "destaque": true
+  },
+  {
+   "veiculo": "Brasil Escola",
+   "data": "2026-11-15 16:00 (atual. 18:09)",
+   "url": "https://vestibular.brasilescola.uol.com.br/noticias/enem-2026-professores-comentam-provas-do-segundo-dia/359181.html",
+   "area": "Matemática/Natureza",
+   "resumo": "Melquias Sobral (Positivo): ~40% matemática básica, ~30% geometria; 'quantidade de questões extremamente difíceis diminuiu'. Resumo SAS: porcentagem em tudo, muita conversão de unidades, 'pingente de pirâmide + prisma' como a mais difícil. Natureza: dentro do esperado.",
+   "destaque": true
+  },
+  {
+   "veiculo": "Terra (vídeo)",
+   "data": "não verificado",
+   "url": "https://www.terra.com.br/noticias/educacao/enem/videos/enem-professores-analisam-prova-de-matematica-e-apontam-questao-do-bilhar-como-a-mais-dificil,19b2cffec01fe9ddffcc87a259944a5ancen3bpo.html",
+   "area": "Matemática",
+   "resumo": "Professores Luciana e Kevin: Matemática 'mais complexa e trabalhosa' que a edição anterior; questão do bilhar (3 reflexões, várias semelhanças) apontada como a mais difícil. Data da publicação não verificada (só o resumo da busca foi lido).",
+   "destaque": false
+  },
+  {
+   "veiculo": "g1",
+   "data": "2026-11-16 03:01",
+   "url": "https://g1.globo.com/educacao/noticia/2026/11/16/10-questoes-mais-dificeis-do-2o-dia-do-enem-2026-tem-fusao-nuclear-circuitos-eletricos-e-capsulas-de-cafe-voce-acertaria.ghtml",
+   "area": "Matemática/Natureza",
+   "resumo": "Professores do Anglo, Cursinho da Poli e Oficina do Estudante listam as 10 questões mais difíceis do 2º dia (5 de Matemática e 5 de Natureza, pelas imagens). Itens exigiram domínio de conceitos e cálculos em várias etapas. Sem classificação geral de dificuldade.",
+   "destaque": false
+  },
+  {
+   "veiculo": "O Globo",
+   "data": "2026-11-14 03:30",
+   "url": "https://oglobo.globo.com/brasil/educacao/enem-e-vestibular/noticia/2026/11/14/enem-saiba-por-que-a-tri-faz-da-prova-de-matematica-a-mais-importante-entre-as-de-multipla-escolha.ghtml",
+   "area": "TRI/Matemática",
+   "resumo": "ANTES da prova. Explica por que Matemática pesa mais na TRI: em 2025, 40 acertos em Natureza = média 787,98; em Matemática = 908,48. Ademar Celedônio (Arco): às vezes 20 acertos em Matemática passam de 700. Não é estimativa de 2026.",
+   "destaque": false
+  },
+  {
+   "veiculo": "Agência Brasil",
+   "data": "2026-11 (data exata não verificada)",
+   "url": "https://agenciabrasil.ebc.com.br/educacao/noticia/2026-11/enem-2026-entenda-como-funciona-teoria-da-resposta-ao-item",
+   "area": "TRI",
+   "resumo": "Explicativo sobre TRI: Matemática tem o maior intervalo (gap) de TRI entre as áreas; 100% de acertos em Matemática leva a 950+. O gap varia a cada ano conforme os parâmetros da prova. Não há estimativa para 2026.",
+   "destaque": false
+  },
+  {
+   "veiculo": "Folha de S.Paulo",
+   "data": "2026-11-08 22:35",
+   "url": "https://www1.folha.uol.com.br/educacao/2026/11/1o-dia-mantem-nivel-de-dificuldade-dos-anos-anteriores-dizem-professores-em-live-da-folha.shtml",
+   "area": "Linguagens/Humanas",
+   "resumo": "1º dia manteve o nível de dificuldade dos anos anteriores (Farias Brito). Humanas bem elaborada; Linguagens com variedade de textos; inglês ligeiramente mais fácil que 2025; D'Laías Moraes: maior desafio foi administrar o tempo. Redação: valorização do SUS como direito universal.",
+   "destaque": false
+  },
+  {
+   "veiculo": "g1",
+   "data": "2026-11-08",
+   "url": "https://g1.globo.com/educacao/enem/2026/noticia/2026/11/08/enem-tem-sus-na-redacao-mais-testlets-e-alta-da-abstencao-veja-destaques-do-1o-dia-de-prova.ghtml",
+   "area": "Linguagens/Humanas",
+   "resumo": "Destaques do 1º dia: tema SUS na redação, mais testlets, alta da abstenção. Resumo de busca: dificuldade média geral (conteúdo da página não lido integralmente).",
+   "destaque": false
+  },
+  {
+   "veiculo": "g1",
+   "data": "2026-11-09",
+   "url": "https://g1.globo.com/educacao/enem/2026/noticia/2026/11/09/10-questoes-mais-dificeis-do-1o-dia-de-enem-2026.ghtml",
+   "area": "Linguagens/Humanas",
+   "resumo": "10 questões mais difíceis do 1º dia (lista por professores). Conteúdo não lido integralmente.",
+   "destaque": false
+  },
+  {
+   "veiculo": "XTRI",
+   "data": "2026-11-14/15 (cálculo atualizado)",
+   "url": "https://xtri.online/simulador-tri/",
+   "area": "TRI/Matemática",
+   "resumo": "Simulador (não oficial). Diz que, pelas respostas enviadas ao simulador, a prova de 2026 se mostrou mais difícil que as de 2019–2025 e usa Matemática de 2022 como referência (43 questões válidas, comparação por nº de erros). Admite que 'não é equalização' e que a nota oficial pode diferir; se a prova for mais difícil que a referência, a nota real pode ser maior. Não publica tabela estática de 2026.",
+   "destaque": true
+  },
+  {
+   "veiculo": "O TEMPO",
+   "data": "2026-11 (data não verificada)",
+   "url": "https://www.otempo.com.br/enem/calculadora-enem",
+   "area": "TRI",
+   "resumo": "Calculadora 'Enem 2026' que usa microdados de 2023–2025 (mediana e faixa P10–P90). Matemática: 30 acertos ≈ 762; 35 ≈ 815; 40 ≈ 880. Não incorpora a dificuldade de 2026.",
+   "destaque": false
+  },
+  {
+   "veiculo": "SPES / EnemCopilot / Professor Filatte",
+   "data": "2026-11 (datas não verificadas)",
+   "url": "https://www.spesedu.com.br/calculadora-tri-enem",
+   "area": "TRI",
+   "resumo": "Calculadoras 'ENEM 2026' que usam microdados de 2025 (SPES) ou média de 2023–2025 (EnemCopilot, Filatte) até o Inep divulgar 2026. Nenhuma tem tabela própria de 2026.",
+   "destaque": false
+  },
+  {
+   "veiculo": "Prof. Rafael Teixeira",
+   "data": "2026-11-16 (acesso)",
+   "url": "https://profrafaelteixeira.com.br/raio-x-da-tri-do-enem/matematica/",
+   "area": "TRI/Matemática",
+   "resumo": "Dados reais 2012–2025 (microdados INEP): nº de acertos para 800 em Matemática: 2022=27, 2018/2017=28, 2019=30, 2023/2021=34, 2024=34, 2025=33. 2022 teve 43 questões válidas (itens 141 e 157 fora). Base para o cenário histórico 'Matemática no padrão 2022'. Dado histórico, não previsão.",
+   "destaque": true
+  }
+ ]
+}

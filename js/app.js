@@ -6,7 +6,9 @@ var AREAS=[['ch','Humanas'],['lc','Linguagens'],['cn','Natureza'],['mt','Matemá
 var VIEWS=[['visao','1 Visão geral'],['tri','2 Simulador TRI'],['univ','3 Universidades'],['vest','4 Vestibulares'],['metas','5 Metas de acertos'],['comparador','6 Comparador'],['estrategia','7 Estratégia de prova'],['relatorio','8 Relatório']];
 var NEAR=15;
 var DEF={lin:35,red:940,nat:38,mat:38,cen:'m',uni:'ufmg',mod:'ampla',v:'visao'};
-var S=copy(DEF), TRI=null, UNI=null, VEST=null, META=null, LEGADO={};
+var S=copy(DEF), TRI=null, UNI=null, VEST=null, META=null, CTX=null, LEGADO={};
+S.pad='hist';
+var Lred=940;
 var F={lin:'',red:'',nat:'',mat:'',st:'',only:false,sort:'avg',dir:-1,nmin:37,nmax:40,mmin:37,mmax:40,limit:600};
 var B={ua:'ufmg',ub:'ufmg',ma:'ampla',mb:'ampla',a:{lin:35,red:940,nat:37,mat:37},b:{lin:35,red:940,nat:40,mat:40}};
 var Q={q:'',uf:'',reg:'',proc:'',cat:'',ver:'',corte:'',limit:24};
@@ -33,6 +35,8 @@ function readURL(){
   if(!UNI.some(function(u){return u.id===S.uni})&&UNI.length)S.uni=UNI[0].id;
   t=p.get('mod'); if(t)S.mod=t;
   t=p.get('v'); if(VIEWS.some(function(v){return v[0]===t}))S.v=t;
+  S.pad=p.get('pad')==='d22'?'d22':'hist';
+  if(S.red===940||S.red===960)Lred=S.red;
   fixMod();
 }
 function qs(extra){
@@ -40,15 +44,85 @@ function qs(extra){
   p.set('lin',S.lin);p.set('red',S.red);p.set('nat',S.nat);p.set('mat',S.mat);p.set('cen',S.cen);p.set('uni',S.uni);
   if(S.mod!=='ampla')p.set('mod',S.mod);
   if(extra)p.set('v',extra);
+  if(S.pad==='d22')p.set('pad','d22');
   return p.toString();
 }
 function shareURL(){return location.origin+location.pathname+'?'+qs('relatorio')}
 function syncURL(){try{history.replaceState(null,'','?'+qs(S.v==='visao'?'':S.v))}catch(e){}}
 
 /* ---------- cálculo ---------- */
-function tri(a,k,sc){return TRI.areas[a].tabela[clamp(k,0,45)][sc]}
-function scoresOf(s,sc){return {ch:tri('ch',43,sc),lc:tri('lc',s.lin,sc),cn:tri('cn',s.nat,sc),mt:tri('mt',s.mat,sc),red:s.red}}
-function avgOf(sc){return (sc.ch+sc.lc+sc.cn+sc.mt+sc.red)/5}
+function isNum(n){return typeof n==='number'&&isFinite(n)}
+function use22(){return S.pad==='d22'}
+function rowAt(a,k){return TRI.areas[a].tabela[clamp(k,0,45)]}
+function band(a,k,as22){
+  var row=rowAt(a,k);
+  if(as22&&a==='mt'){
+    var d=row.d22;
+    if(!d||!isNum(d.p10)||!isNum(d.med)||!isNum(d.p90))return {c:null,m:null,o:null,n:d&&isNum(d.n)?d.n:0,y22:true,ausente:true,est:false,pequena:true};
+    return {c:d.p10,m:d.med,o:d.p90,n:d.n,y22:true,ausente:false,est:false,pequena:d.n<300};
+  }
+  return {c:row.c,m:row.m,o:row.o,n:row.n,y22:false,ausente:false,est:!!row.est,pequena:!!row.pequena};
+}
+function bandsOf(s,as22){return {ch:band('ch',43,as22),lc:band('lc',s.lin,as22),cn:band('cn',s.nat,as22),mt:band('mt',s.mat,as22)}}
+function tri(a,k,sc){return band(a,k,use22())[sc]}
+function scoresOf(s,sc){var b=bandsOf(s,use22());return {ch:b.ch[sc],lc:b.lc[sc],cn:b.cn[sc],mt:b.mt[sc],red:s.red}}
+function avgOf(sc){var xs=[sc.ch,sc.lc,sc.cn,sc.mt,sc.red];if(xs.some(function(v){return !isNum(v)}))return null;return (sc.ch+sc.lc+sc.cn+sc.mt+sc.red)/5}
+function avgBand(s,as22,key){var b=bandsOf(s,as22);return avgOf({ch:b.ch[key],lc:b.lc[key],cn:b.cn[key],mt:b.mt[key],red:s.red})}
+function dataBR(iso){var p=String(iso||'').split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:(iso||'')}
+function warn2022(){
+  return '<div class="warn" role="note"><p><b>Matemática no padrão 2022 (estimativa não oficial).</b> Leia antes de usar estes números.</p><ul class="tight">'+
+    '<li>Isto <b>não é uma tabela de 2026</b> e não é a nota do ENEM 2026.</li>'+
+    '<li>Matemática de 2022 teve <b>43 questões válidas</b>. O número de questões válidas de 2026 só se sabe depois do <b>gabarito oficial, em 18/11/2026</b>.</li>'+
+    '<li>A <b>opinião dos professores está dividida</b>.</li>'+
+    '<li>Estes números serão <b>substituídos pelos dados reais em 18/01/2027</b>, quando o Inep publicar os resultados.</li>'+
+    '<li><b>Não é previsão de corte</b> do Sisu 2027 e <b>não é probabilidade de aprovação</b>.</li>'+
+  '</ul></div>';
+}
+function warn2022Short(){
+  return '<p class="warn" role="note"><b>Matemática no padrão 2022 (estimativa não oficial).</b> Não é tabela de 2026. Matemática 2022 teve 43 questões válidas; as válidas de 2026 só se sabe após o gabarito de 18/11/2026. A opinião dos professores está dividida. Os dados reais substituem isto em 18/01/2027. Não é previsão de corte nem probabilidade de aprovação.</p>';
+}
+function padBanner(){return S.pad==='d22'?warn2022():''}
+function padSrc(){
+  if(S.pad!=='d22')return '';
+  return '<p class="src">Matemática neste gráfico: padrão 2022 (P10, mediana e P90). As outras áreas seguem 2023–2025. Estimativa não oficial: não é tabela de 2026, não é previsão de corte e não é probabilidade de aprovação.</p>';
+}
+function median(xs){
+  var a=xs.filter(isNum).slice().sort(function(x,y){return x-y});
+  if(!a.length)return null;
+  var n=a.length,m=Math.floor(n/2);
+  return n%2?a[m]:(a[m-1]+a[m])/2;
+}
+function distRows(s,as22){
+  var b=bandsOf(s,as22), out=[];
+  UNI.forEach(function(u){
+    if(!u.corte||u.corte.valor==null||!u.pesos)return;
+    function w(key){return weighted(u,{ch:b.ch[key],lc:b.lc[key],cn:b.cn[key],mt:b.mt[key],red:s.red})}
+    var wm=w('m'), lo=w('c'), hi=w('o'), cut=u.corte.valor;
+    out.push({u:u,cut:cut,wm:wm,lo:lo,hi:hi,dm:isNum(wm)?wm-cut:null,dlo:isNum(lo)?lo-cut:null,dhi:isNum(hi)?hi-cut:null});
+  });
+  return out;
+}
+function distSummary(rows){
+  var dm=rows.map(function(r){return r.dm}).filter(isNum);
+  var dh=rows.map(function(r){return r.dhi}).filter(isNum);
+  return {n:dm.length,lo:dm.length?Math.min.apply(null,dm):null,hi:dm.length?Math.max.apply(null,dm):null,med:median(dm),acimaMedia:dm.filter(function(x){return x>=0}).length,acimaMax:dh.filter(function(x){return x>=0}).length};
+}
+function nCursos(n){
+  if(n===0)return 'nenhum curso fica acima do corte de 2026';
+  if(n===1)return '<b>1</b> curso fica acima do corte de 2026';
+  return '<b>'+n+'</b> cursos ficam acima do corte de 2026';
+}
+function lorenzoOn(){return S.lin===36&&S.nat===32&&S.mat===30&&(S.red===940||S.red===960)}
+function applyLorenzo(red){Lred=red;S.lin=36;S.nat=32;S.mat=30;S.red=red}
+function failsAt(s,as22){
+  var b=bandsOf(s,as22), sc={ch:b.ch.m,lc:b.lc.m,cn:b.cn.m,mt:b.mt.m,red:s.red}, found=[];
+  UNI.forEach(function(u){
+    if(!u.corte||u.corte.valor==null||!u.pesos)return;
+    var f=minFails(u,sc);
+    if(f.length)found.push(labelOf(u)+': '+f.join(', '));
+  });
+  return found;
+}
 function canonUni(id){return (LEGADO&&LEGADO[id])||id}
 function uniById(id){id=canonUni(id);for(var i=0;i<UNI.length;i++)if(UNI[i].id===id)return UNI[i];return UNI[0]}
 function verKind(s){s=s||'';if(/^verificado/i.test(s))return 'verificado';if(/^parcial/i.test(s))return 'parcial';return 'nao'}
@@ -177,7 +251,7 @@ function cutoff(u,mod){
 function fixMod(){var u=uniById(S.uni);if(S.mod!=='ampla'&&!u.modalidades.some(function(m){return m.id===S.mod}))S.mod='ampla'}
 function weighted(u,sc){
   if(!u.pesos)return null;var p=u.pesos,t=0,w=0,k;
-  for(k in p){t+=p[k]*sc[k];w+=p[k]}
+  for(k in p){if(!isNum(sc[k]))return null;t+=p[k]*sc[k];w+=p[k]}
   return t/w;
 }
 function minFails(u,sc){
@@ -211,6 +285,7 @@ function gbars(o){
   g.forEach(function(gr,gi){
     var x0=pl+gi*gw+(gw-bw*gr.vals.length)/2;
     gr.vals.forEach(function(v,j){
+      if(!isNum(v))return;
       var hh=Math.max(0,(v-o.min)/(o.max-o.min)*ih);x=x0+j*bw;y=pt+ih-hh;
       s+='<rect x="'+x+'" y="'+y+'" width="'+(bw-2)+'" height="'+hh+'" rx="3" fill="'+o.colors[j]+'"/>';
       if(j===(o.labelIdx==null?1:o.labelIdx))s+='<text x="'+(x+(bw-2)/2)+'" y="'+(y-3)+'" font-size="8.5" text-anchor="middle" fill="#0a2a5e" font-weight="700">'+Math.round(v)+'</text>';
@@ -225,31 +300,35 @@ function legend(items){return '<div class="legend">'+items.map(function(i){retur
 var COL3=['#9cc3ff','#0b5ed7','#16a34a'];
 function chartAreas(){
   var gr=AREAS.map(function(a){var k=a[0];return {label:a[1],sub:k==='red'?String(S.red):k==='ch'?'43':String(k==='lc'?S.lin:k==='cn'?S.nat:S.mat),vals:SCK.map(function(c){return scoresOf(S,c)[k]})}});
-  return gbars({title:'Notas estimadas por área',groups:gr,colors:COL3,min:300,max:1000})+legend([['Conservador',COL3[0]],['Central',COL3[1]],['Otimista',COL3[2]]]);
+  return gbars({title:'Notas estimadas por área',groups:gr,colors:COL3,min:300,max:1000})+legend([['Conservador',COL3[0]],['Central',COL3[1]],['Otimista',COL3[2]]])+padSrc();
 }
 function chartScen(){
   var u=uniById(S.uni),c=cutoff(u,S.mod),vals=SCK.map(function(k){return avgOf(scoresOf(S,k))}),wv=SCK.map(function(k){return weighted(u,scoresOf(S,k))});
-  var groups=[{label:'Média simples',vals:vals}], all=vals.slice(), extra='';
-  if(wv[0]!=null){groups.push({label:'Ponderada '+labelOf(u),vals:wv});all=all.concat(wv)}
+  var groups=[{label:'Média simples',vals:vals}], all=vals.filter(isNum), extra='';
+  if(isNum(wv[0])){groups.push({label:'Ponderada '+labelOf(u),vals:wv});all=all.concat(wv.filter(isNum))}
   else extra='<p class="src">Pesos de '+esc(u.sigla)+': <span class="st na">não verificado</span>. A média ponderada não entra neste gráfico.</p>';
   if(c!=null)all.push(c);
+  if(!all.length)return '<p class="src">Sem números para este gráfico neste padrão.</p>';
   var mn=Math.floor(Math.min.apply(null,all)/20)*20-20,mx=Math.ceil(Math.max.apply(null,all)/20)*20+10;
-  return gbars({title:'Conservador, central e otimista',groups:groups,colors:COL3,min:mn,max:mx,hline:c,hlabel:c?'corte '+labelOf(u)+' '+f2(c):'',h:230,labelIdx:1})+legend([['Conservador',COL3[0]],['Central',COL3[1]],['Otimista',COL3[2]]])+extra;
+  return gbars({title:'Conservador, central e otimista',groups:groups,colors:COL3,min:mn,max:mx,hline:c,hlabel:c?'corte '+labelOf(u)+' '+f2(c):'',h:230,labelIdx:1})+legend([['Conservador',COL3[0]],['Central',COL3[1]],['Otimista',COL3[2]]])+extra+padSrc();
 }
 function chartEvo(){
   var W=360,H=210,pl=36,pr=10,pt=12,pb=30,iw=W-pl-pr,ih=H-pt-pb,x0=25,x1=45,A=[],B2=[],k,mn=9999,mx=0;
-  for(k=x0;k<=x1;k++){var a=avgOf(scoresOf({lin:S.lin,red:S.red,nat:k,mat:S.mat},S.cen)),b=avgOf(scoresOf({lin:S.lin,red:S.red,nat:S.nat,mat:k},S.cen));A.push(a);B2.push(b);mn=Math.min(mn,a,b);mx=Math.max(mx,a,b)}
+  for(k=x0;k<=x1;k++){var a=avgOf(scoresOf({lin:S.lin,red:S.red,nat:k,mat:S.mat},S.cen)),b=avgOf(scoresOf({lin:S.lin,red:S.red,nat:S.nat,mat:k},S.cen));A.push(a);B2.push(b);if(isNum(a)){mn=Math.min(mn,a);mx=Math.max(mx,a)}if(isNum(b)){mn=Math.min(mn,b);mx=Math.max(mx,b)}}
+  if(!isFinite(mn)||!isFinite(mx)||mn===9999)return '<p class="src">Sem números para este gráfico neste padrão.</p>';
   mn=Math.floor(mn/10)*10-5;mx=Math.ceil(mx/10)*10+5;
   var X=function(k){return pl+(k-x0)/(x1-x0)*iw},Y=function(v){return pt+ih-(v-mn)/(mx-mn)*ih};
   var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolução da média conforme acertos">',i,v;
   for(i=0;i<=4;i++){v=mn+(mx-mn)*i/4;s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#e3eaf6"/><text x="'+(pl-4)+'" y="'+(Y(v)+3)+'" font-size="9" fill="#5b6b86" text-anchor="end">'+Math.round(v)+'</text>'}
   for(k=x0;k<=x1;k+=5)s+='<text x="'+X(k)+'" y="'+(H-pb+14)+'" font-size="9.5" text-anchor="middle" fill="#0f1b33">'+k+'</text>';
   s+='<text x="'+(pl+iw/2)+'" y="'+(H-4)+'" font-size="9" text-anchor="middle" fill="#5b6b86">acertos na área que varia</text>';
-  var pa=A.map(function(v,i){return X(x0+i)+','+Y(v)}).join(' '),pb2=B2.map(function(v,i){return X(x0+i)+','+Y(v)}).join(' ');
-  s+='<polyline points="'+pa+'" fill="none" stroke="#0b5ed7" stroke-width="2.5"/><polyline points="'+pb2+'" fill="none" stroke="#16a34a" stroke-width="2.5"/>';
-  if(S.nat>=x0)s+='<circle cx="'+X(S.nat)+'" cy="'+Y(A[S.nat-x0])+'" r="5" fill="#fff" stroke="#0b5ed7" stroke-width="3"/>';
-  if(S.mat>=x0)s+='<circle cx="'+X(S.mat)+'" cy="'+Y(B2[S.mat-x0])+'" r="5" fill="#fff" stroke="#16a34a" stroke-width="3"/>';
-  return s+'</svg>'+legend([['Varia só Natureza (Mat. = '+S.mat+')','#0b5ed7'],['Varia só Matemática (Nat. = '+S.nat+')','#16a34a']])+'<p class="src">Média simples das cinco áreas, cenário '+SC[S.cen].toLowerCase()+'. Círculos = sua simulação atual.</p>';
+  function poly(arr){var seg=[],out='',i,v;function flush(){if(seg.length>1)out+=seg.join(' ');seg=[]}for(i=0;i<arr.length;i++){v=arr[i];if(!isNum(v)){flush();continue}seg.push(X(x0+i)+','+Y(v))}flush();return out}
+  var pa=poly(A),pb2=poly(B2);
+  if(pa)s+='<polyline points="'+pa+'" fill="none" stroke="#0b5ed7" stroke-width="2.5"/>';
+  if(pb2)s+='<polyline points="'+pb2+'" fill="none" stroke="#16a34a" stroke-width="2.5"/>';
+  if(S.nat>=x0&&isNum(A[S.nat-x0]))s+='<circle cx="'+X(S.nat)+'" cy="'+Y(A[S.nat-x0])+'" r="5" fill="#fff" stroke="#0b5ed7" stroke-width="3"/>';
+  if(S.mat>=x0&&isNum(B2[S.mat-x0]))s+='<circle cx="'+X(S.mat)+'" cy="'+Y(B2[S.mat-x0])+'" r="5" fill="#fff" stroke="#16a34a" stroke-width="3"/>';
+  return s+'</svg>'+legend([['Varia só Natureza (Mat. = '+S.mat+')','#0b5ed7'],['Varia só Matemática (Nat. = '+S.nat+')','#16a34a']])+'<p class="src">Média simples das cinco áreas, cenário '+SC[S.cen].toLowerCase()+'. Círculos = sua simulação atual.</p>'+padSrc();
 }
 function chartCuts(list){
   var rows=(list||compUnis()).map(function(u){var e=evalU(u,S,S.cen,'ampla'),lo=weighted(u,scoresOf(S,'c')),hi=weighted(u,scoresOf(S,'o'));return {u:u,e:e,lo:lo,hi:hi}}).filter(function(r){return r.e.c!=null&&r.e.w!=null&&r.lo!=null&&r.hi!=null});
@@ -269,17 +348,19 @@ function chartCuts(list){
     s+='<line x1="'+X(r.lo)+'" x2="'+X(r.hi)+'" y1="'+(y+rh/2)+'" y2="'+(y+rh/2)+'" stroke="#0a2a5e" stroke-width="2"/><line x1="'+X(r.lo)+'" x2="'+X(r.lo)+'" y1="'+(y+rh/2-4)+'" y2="'+(y+rh/2+4)+'" stroke="#0a2a5e" stroke-width="2"/><line x1="'+X(r.hi)+'" x2="'+X(r.hi)+'" y1="'+(y+rh/2-4)+'" y2="'+(y+rh/2+4)+'" stroke="#0a2a5e" stroke-width="2"/>';
     s+='<line x1="'+X(r.e.c)+'" x2="'+X(r.e.c)+'" y1="'+(y+1)+'" y2="'+(y+rh-1)+'" stroke="#0f1b33" stroke-width="3"/>';
   });
-  return s+'</svg>'+legend([['Acima do corte','#16a34a'],['Perto (até '+NEAR+' pts)','#d97706'],['Abaixo','#b42318'],['Corte histórico (barra preta)','#0f1b33'],['Faixa conserv.–otimista (linha)','#0a2a5e']])+'<p class="src">Barra = nota ponderada estimada (cenário '+SC[S.cen].toLowerCase()+'), comparada ao corte histórico da ampla concorrência. Não indica aprovação.'+(capped?' Exibindo 16 cursos com corte mais próximo da sua nota, de '+total+' com corte e pesos.':'')+' * = o levantamento diz que esse corte de 2026 não se aplica ao processo de 2027. † = status parcial.</p>';
+  return s+'</svg>'+legend([['Acima do corte','#16a34a'],['Perto (até '+NEAR+' pts)','#d97706'],['Abaixo','#b42318'],['Corte histórico (barra preta)','#0f1b33'],['Faixa conserv.–otimista (linha)','#0a2a5e']])+'<p class="src">Barra = nota ponderada estimada (cenário '+SC[S.cen].toLowerCase()+'), comparada ao corte histórico da ampla concorrência. Não indica aprovação.'+(capped?' Exibindo 16 cursos com corte mais próximo da sua nota, de '+total+' com corte e pesos.':'')+' * = o levantamento diz que esse corte de 2026 não se aplica ao processo de 2027. † = status parcial.</p>'+padSrc();
 }
 function chartSens(){
   var u=uniById(S.uni),base=scoresOf(S,S.cen),bA=avgOf(base),bW=weighted(u,base);
-  function d(k,dn,dm){var s2={lin:S.lin,red:S.red,nat:clamp(S.nat+dn,0,45),mat:clamp(S.mat+dm,0,45)},sc=scoresOf(s2,S.cen);return [avgOf(sc)-bA,bW!=null?weighted(u,sc)-bW:0]}
-  var m=d('m',0,1),n=d('n',1,0),mx=Math.max(m[0],n[0],m[1],n[1],1),W=360,H=170,pl=96,iw=W-pl-40;
+  if(!isNum(bA))return '<p class="src">Sem nota de Matemática neste padrão para '+S.mat+' acertos. O CSV de 2022 não tem essa linha.</p>';
+  function d(dn,dm){var s2={lin:S.lin,red:S.red,nat:clamp(S.nat+dn,0,45),mat:clamp(S.mat+dm,0,45)},sc=scoresOf(s2,S.cen),a=avgOf(sc),w=weighted(u,sc);return [isNum(a)?a-bA:null,isNum(w)&&isNum(bW)?w-bW:null]}
+  var m=d(0,1),n=d(1,0),nums=[m[0],n[0],m[1],n[1]].filter(isNum),mx=Math.max.apply(null,nums.concat([1])),W=360,H=170,pl=96,iw=W-pl-40;
   var rows=[['+1 em Matemática · média simples',m[0],'#16a34a'],['+1 em Natureza · média simples',n[0],'#0b5ed7']];
-  if(bW!=null)rows.push(['+1 em Matemática · pond. '+u.sigla,m[1],'#16a34a'],['+1 em Natureza · pond. '+u.sigla,n[1],'#0b5ed7']);
+  if(isNum(bW))rows.push(['+1 em Matemática · pond. '+u.sigla,m[1],'#16a34a'],['+1 em Natureza · pond. '+u.sigla,n[1],'#0b5ed7']);
+  rows=rows.filter(function(r){return isNum(r[1])});
   var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Sensibilidade a mais um acerto">';
   rows.forEach(function(r,i){var y=10+i*38,w=Math.max(2,r[1]/mx*iw);s+='<text x="0" y="'+(y+8)+'" font-size="9.5" fill="#0f1b33">'+esc(r[0].split(' · ')[0])+'</text><text x="0" y="'+(y+20)+'" font-size="8.5" fill="#5b6b86">'+esc(r[0].split(' · ')[1])+'</text><rect x="'+pl+'" y="'+(y)+'" width="'+w+'" height="22" rx="5" fill="'+r[2]+'"/><text x="'+(pl+w+5)+'" y="'+(y+15)+'" font-size="10.5" font-weight="700" fill="#0a2a5e">'+sgn(r[1])+'</text>'});
-  return s+'</svg><p class="src">Ganho em pontos ao acertar uma questão a mais, a partir da simulação atual (cenário '+SC[S.cen].toLowerCase()+'). O efeito real depende de quais questões são acertadas.</p>';
+  return s+'</svg><p class="src">Ganho em pontos ao acertar uma questão a mais, a partir da simulação atual (cenário '+SC[S.cen].toLowerCase()+'). O efeito real depende de quais questões são acertadas.</p>'+padSrc();
 }
 
 /* ---------- controles ---------- */
@@ -295,18 +376,26 @@ function controlsHTML(){
   '<div class="ctl"><label>Redação <span class="sub">(simulação)</span></label>'+seg('red',RED.map(function(v){return [v,v]}),S.red)+'</div>'+
   areaCtl('nat','Ciências da Natureza',S.nat)+areaCtl('mat','Matemática',S.mat)+
   '<div class="ctl"><label>Cenário da TRI exibido</label>'+seg('cen',SCK.map(function(k){return [k,SC[k]]}),S.cen)+'</div>'+
-  '<div class="btn-row"><button type="button" class="btn btn-ghost" data-act="reset">Voltar ao cenário inicial</button></div>';
+  '<div class="ctl"><label>Padrão de Matemática</label>'+seg('pad',[['hist','Histórico 2023–2025'],['d22','Matemática no padrão 2022 (estimativa não oficial)']],S.pad,'wrap')+
+  '<div class="pad-warn"></div><p class="src">O histórico 2023–2025 não muda. No outro padrão, só a Matemática passa a usar o P10, a mediana e o P90 de 2022. Humanas, Linguagens e Natureza ficam iguais.</p></div>'+
+  '<div class="btn-row"><button type="button" class="btn btn-green" data-act="lorenzo">Cenário do Lorenzo</button><button type="button" class="btn btn-ghost" data-act="reset">Voltar ao cenário inicial</button></div>';
 }
 function syncControls(){
   $$('[data-act]').forEach(function(b){
     var a=b.getAttribute('data-act'),v=b.getAttribute('data-v');
-    if(v!=null&&(a==='lin'||a==='red'||a==='nat'||a==='mat'||a==='cen'))b.setAttribute('aria-pressed',String(S[a])===v);
+    if(v!=null&&(a==='lin'||a==='red'||a==='nat'||a==='mat'||a==='cen'||a==='pad'||a==='lred')){
+      var cur=a==='pad'?S.pad:a==='lred'?Lred:S[a];
+      b.setAttribute('aria-pressed',String(cur)===String(v));
+    }
   });
+  $$('.pad-warn').forEach(function(el){el.innerHTML=S.pad==='d22'?warn2022Short():''});
   $$('[data-in="nat"],[data-in="mat"]').forEach(function(i){if(document.activeElement!==i)i.value=S[i.getAttribute('data-in')]});
   var sc=scoresOf(S,S.cen);
-  $$('[data-lbl]').forEach(function(l){var k=l.getAttribute('data-lbl');l.textContent='≈ '+Math.round(sc[k==='nat'?'cn':'mt'])+' pts'});
-  var bar=$('#scenario-bar');
-  bar.innerHTML='<span class="chip g">Humanas 43</span><span class="chip">Ling. '+S.lin+'</span><span class="chip">Red. '+S.red+'</span><span class="chip">Nat. '+S.nat+'</span><span class="chip">Mat. '+S.mat+'</span><span class="chip g">Média '+f1(avgOf(sc))+' ('+SC[S.cen].toLowerCase()+')</span>';
+  $$('[data-lbl]').forEach(function(l){var k=l.getAttribute('data-lbl');var v=sc[k==='nat'?'cn':'mt'];l.textContent=isNum(v)?('≈ '+Math.round(v)+' pts'):'sem dado em 2022'});
+  var bar=$('#scenario-bar'), extra='';
+  if(S.pad==='d22')extra+='<span class="chip w">Mat. padrão 2022</span>';
+  if(lorenzoOn())extra+='<span class="chip g">Lorenzo</span>';
+  bar.innerHTML='<span class="chip g">Humanas 43</span><span class="chip">Ling. '+S.lin+'</span><span class="chip">Red. '+S.red+'</span><span class="chip">Nat. '+S.nat+'</span><span class="chip">Mat. '+S.mat+'</span>'+extra+'<span class="chip g">Média '+f1(avgOf(sc))+' ('+SC[S.cen].toLowerCase()+(S.pad==='d22'?' · mat. 2022':'')+')</span>';
 }
 
 /* ---------- views ---------- */
@@ -326,11 +415,12 @@ function summaryKpis(){
   var comboTxt=(e.c==null||!u.pesos)?'<p>A conta de combinações que alcançam o corte não entra para '+esc(labelOf(u))+': '+(e.c==null?'sem corte comparável.':'pesos não verificados.')+'</p>':'<p><b>'+n+' de '+tot+'</b> combinações da tabela (Nat./Mat. 37–40) alcançam o corte histórico de '+esc(labelOf(u))+' no cenário '+SC[S.cen].toLowerCase()+'.</p>';
   var unb=UNI.filter(function(x){return x.id==='unb-brasilia'})[0];
   var unbTxt=unb?(esc(unb.sigla)+' ('+f2(unb.corte.valor)+', '+esc(unb.status_verificacao)+')'):'UnB';
-  return '<div class="grid2"><div class="kpi g"><b>'+f1(avgOf(sc[S.cen]))+'</b><span>Média simples estimada ('+SC[S.cen].toLowerCase()+')</span></div>'+
-  '<div class="kpi"><b>'+f1(avgOf(sc.c))+' – '+f1(avgOf(sc.o))+'</b><span>Faixa conservador–otimista</span></div>'+
-  '<div class="kpi"><b>'+(e.w==null?'—':f1(e.w))+'</b><span>Ponderada '+esc(labelOf(u))+' ('+SC[S.cen].toLowerCase()+')</span></div>'+
+  var padTxt=S.pad==='d22'?' · Matemática no padrão 2022':'';
+  return '<div class="grid2"><div class="kpi g"><b>'+f1(avgOf(sc[S.cen]))+'</b><span>Média simples estimada ('+SC[S.cen].toLowerCase()+padTxt+')</span></div>'+
+  '<div class="kpi"><b>'+f1(avgOf(sc.c))+' – '+f1(avgOf(sc.o))+'</b><span>Faixa conservador–otimista'+padTxt+'</span></div>'+
+  '<div class="kpi"><b>'+(e.w==null?'—':f1(e.w))+'</b><span>Ponderada '+esc(labelOf(u))+' ('+SC[S.cen].toLowerCase()+padTxt+')</span></div>'+
   '<div class="kpi"><b>'+(e.d==null?'—':sgn(e.d))+'</b><span>Distância ao corte histórico '+(e.c!=null?f2(e.c):'')+'</span></div></div>'+
-  '<p style="margin-top:10px">'+distBadge(e)+' '+verChip(u.status_verificacao)+' <small>'+esc(labelOf(u))+' · cenário '+SC[S.cen].toLowerCase()+'</small></p>'+
+  '<p style="margin-top:10px">'+distBadge(e)+' '+verChip(u.status_verificacao)+' <small>'+esc(labelOf(u))+' · cenário '+SC[S.cen].toLowerCase()+padTxt+'</small></p>'+
   '<p class="src">'+(u.corte&&u.corte.edicao?esc(u.corte.edicao)+' · '+esc(u.corte.modalidade||''):'sem corte comparável')+'</p>'+
   '<p class="statusline">'+esc(u.status_verificacao||'não verificado')+'</p>'+
   comboTxt+
@@ -339,32 +429,127 @@ function summaryKpis(){
 }
 var MSG='<div class="msg"><p><b>Lorenzo, acertar 43 das 45 questões de Ciências Humanas é uma conquista extraordinária.</b></p><p>Você já demonstrou conhecimento, disciplina e capacidade de alcançar resultados expressivos.</p><p>Agora vem uma etapa fundamental: Matemática e Ciências da Natureza.</p><p>Cada questão resolvida corretamente amplia suas possibilidades.</p><p>Você não precisa acertar tudo. Precisa fazer uma prova inteligente, administrar seu tempo e aproveitar o conhecimento que construiu.</p><p><b>A Medicina é o seu objetivo. Continue trabalhando para conquistá-la.</b></p></div>';
 function initViews(){
-  $('#view-visao').innerHTML='<div class="card hero"><h1>Rota Medicina 2027</h1><p>Simule o segundo dia do ENEM, veja a nota estimada por área e compare com os cortes históricos de '+UNI.length+' cursos de Medicina em universidades públicas. Mexa nos controles: tudo recalcula na hora. Linguagens continua na faixa de 34 a 37 acertos.</p></div>'+
+  $('#view-visao').innerHTML='<div class="card hero"><h1>Rota Medicina 2027</h1><p>Simule o segundo dia do ENEM, veja a nota estimada por área e compare com os cortes históricos de '+UNI.length+' cursos de Medicina em universidades públicas. Mexa nos controles: tudo recalcula na hora. Linguagens continua na faixa de 34 a 37 acertos. O histórico de 2023 a 2025 continua igual. Há um cenário a mais, só para Matemática: padrão 2022, estimativa não oficial.</p></div>'+
    '<div class="card"><h2>Painel principal</h2><p class="mut">Humanas está fixo em 43/45. Linguagens e Redação são simulações. Natureza e Matemática aceitam de 0 a 45.</p><div id="ctl-inline">'+controlsHTML()+'</div></div><div id="dyn-visao"></div><div class="card"><h2>Mensagem para você</h2>'+MSG+'</div>';
   $('#sheet-controls').innerHTML=controlsHTML();
 }
+function lorenzoHTML(){
+  var red=Lred===960?960:940, s={lin:36,red:red,nat:32,mat:30}, other=red===940?960:940;
+  var sOther={lin:36,red:other,nat:32,mat:30};
+  var A=bandsOf(s,false), B=bandsOf(s,true);
+  var names={ch:'Humanas',lc:'Linguagens',cn:'Natureza',mt:'Matemática'}, order=['ch','lc','cn','mt'];
+  function trio(b){return SCK.map(function(k){return '<td>'+f1(b[k])+'</td>'}).join('')}
+  var body=order.map(function(a){
+    var ac=a==='ch'?43:a==='lc'?36:a==='cn'?32:30;
+    var flag=a==='ch'?' <small title="amostra pequena em 2022 (113) e em 2025 (295)">†</small>':'';
+    var sub=a==='lc'?' <small>(simulação, 34–37)</small>':'';
+    return '<tr'+(a==='mt'?' class="on22"':'')+'><td>'+names[a]+sub+'</td><td>'+ac+'/45'+flag+'</td>'+trio(A[a])+trio(B[a])+'</tr>';
+  }).join('');
+  function avgLine(ss,as22){return SCK.map(function(k){return f1(avgBand(ss,as22,k))}).join(' / ')}
+  var rowsA=distRows(s,false), rowsB=distRows(s,true), sa=distSummary(rowsA), sb=distSummary(rowsB);
+  function bloco(label, sm){
+    return '<p><b>'+label+'.</b> De '+sgn(sm.lo)+' a '+sgn(sm.hi)+' (mediana '+sgn(sm.med)+'), em '+sm.n+' cursos. Na média, '+nCursos(sm.acimaMedia)+'. No máximo da faixa, '+nCursos(sm.acimaMax)+'.</p>';
+  }
+  var closest=rowsB.slice().sort(function(a,b){return b.dm-a.dm}).slice(0,5);
+  var closeHtml=closest.map(function(r){return '<li>'+esc(r.u.sigla)+' — '+esc(r.u.campus)+' ('+esc(r.u.cidade)+cautionMark(r.u)+'): '+sgn(r.dm)+'</li>'}).join('');
+  var byA={};rowsA.forEach(function(r){byA[r.u.id]=r});
+  var all=rowsB.slice().sort(function(a,b){return b.dm-a.dm});
+  var full=all.map(function(r){var a=byA[r.u.id];return '<tr data-id="'+esc(r.u.id)+'"><td>'+esc(labelOf(r.u)+cautionMark(r.u))+' <small>'+esc(r.u.campus)+'</small></td><td>'+f2(r.cut)+'</td><td>'+f2(a.dm)+'</td><td>'+f2(r.dm)+'</td><td>'+f2(a.dhi)+'</td><td>'+f2(r.dhi)+'</td></tr>'}).join('');
+  var fa=failsAt(s,false), fb=failsAt(s,true);
+  var failTxt=(fa.length||fb.length)?('<div class="note">Abaixo da nota mínima na média: '+esc(fa.concat(fb).join('; '))+'. </div>'):'<p class="src">Nenhuma nota da média ficou abaixo do mínimo por área exigido no levantamento.</p>';
+  var applied=lorenzoOn()&&S.red===red;
+  return '<div class="card" id="lorenzo"><h2>Cenário do Lorenzo</h2>'+
+    '<p>Linguagens <b>36</b> (simulação, faixa 34–37). Humanas <b>43</b>. Matemática <b>30</b>. Natureza <b>32</b>. A redação alterna entre 940 e 960.</p>'+
+    '<div class="ctl"><label>Redação do Lorenzo</label>'+seg('lred',[[940,'940'],[960,'960']],red)+'</div>'+
+    '<p class="src">'+(applied?'O simulador está nestes acertos.':'Toque em 940 ou 960 para aplicar estes acertos no simulador.')+' Humanas continua fixo. Linguagens só entra como simulação, de 34 a 37.</p>'+
+    warn2022()+
+    '<h3>Notas por área — 2023–2025 ao lado do padrão 2022</h3>'+
+    '<div class="tscroll"><table><thead><tr><th>Área</th><th>Acertos</th><th>A conserv.</th><th>A central</th><th>A otim.</th><th>B conserv.</th><th>B central</th><th>B otim.</th></tr></thead><tbody>'+body+'</tbody></table></div>'+
+    '<p class="src">A = histórico 2023–2025 do app (menor P10, média das medianas, maior P90). B = o mesmo, e só a Matemática vem de 2022 (P10, mediana e P90). Humanas, Linguagens e Natureza não mudam. † Humanas, 43 acertos: amostra pequena em 2022 (113 candidatos) e em 2025 (295). A faixa 2023–2025 soma 4.070 e não leva † na tabela geral.</p>'+
+    '<h3>Média simples com redação '+red+'</h3>'+
+    '<div class="grid2"><div class="kpi"><b>'+avgLine(s,false)+'</b><span>A · 2023–2025 (mín / média / máx)</span></div>'+
+    '<div class="kpi g"><b>'+avgLine(s,true)+'</b><span>B · Matemática no padrão 2022</span></div></div>'+
+    '<p class="src">Com redação '+other+': A '+avgLine(sOther,false)+' · B '+avgLine(sOther,true)+'.</p>'+
+    '<h3>Distância até o corte de 2026 (ampla)</h3>'+bloco('A · 2023–2025',sa)+bloco('B · Matemática no padrão 2022',sb)+
+    '<p>Mais próximos na média, padrão 2022, redação '+red+':</p><ul class="tight">'+closeHtml+'</ul>'+failTxt+
+    '<p class="src">Negativo = abaixo do corte de 2026. É distância contra um corte histórico. <b>Não é previsão do corte de 2027 e não é probabilidade de aprovação.</b> UnB (corte sem pesos verificados) e os cursos sem corte comparável ficam de fora: a distância não é calculada. * = o levantamento diz que o corte de 2026 não se aplica ao processo de 2027.</p>'+
+    '<details><summary>Os '+all.length+' cursos com corte e pesos</summary><div class="tscroll"><table><thead><tr><th>Curso</th><th>Corte</th><th>A dist. média</th><th>B dist. média</th><th>A dist. máx</th><th>B dist. máx</th></tr></thead><tbody>'+full+'</tbody></table></div><p class="src">Duas casas decimais, nota ponderada menos o corte de 2026.</p></details></div>';
+}
+function contextoHTML(){
+  if(!CTX||!CTX.fontes)return '';
+  var paras=(CTX.paragrafos||[]).map(function(p){return '<p>'+esc(p)+'</p>'}).join('');
+  var dest=CTX.fontes.filter(function(f){return f.destaque});
+  var links='<ul class="tight news">'+dest.map(function(f){return '<li><a href="'+hrefOf(f.url)+'" target="_blank" rel="noopener">'+esc(f.veiculo)+'</a> <small>· '+esc(f.data)+' · '+esc(f.area)+'</small></li>'}).join('')+'</ul>';
+  var all=CTX.fontes.map(function(f){return '<li><a href="'+hrefOf(f.url)+'" target="_blank" rel="noopener">'+esc(f.veiculo)+'</a> <small>· '+esc(f.data)+' · '+esc(f.area)+'</small><br>'+esc(f.resumo)+'</li>'}).join('');
+  return '<div class="card contexto-enem"><h2>'+esc(CTX.titulo||'Contexto ENEM 2026')+'</h2>'+paras+'<p><b>A opinião dos professores está dividida.</b> Fontes em destaque:</p>'+links+
+    '<details><summary>Todas as fontes consultadas ('+CTX.fontes.length+')</summary><ul class="tight news">'+all+'</ul><p class="src">Leitura de '+esc(CTX.pesquisado_em||'16/11/2026')+'.</p></details></div>';
+}
+function compareMtHTML(){
+  var ks=[27,30,33,34,43,44,45];
+  if(ks.indexOf(S.mat)<0)ks.push(S.mat);
+  ks.sort(function(a,b){return a-b});
+  var rows=ks.map(function(k){
+    var h=band('mt',k,false), d=band('mt',k,true);
+    var mark=d.ausente?' <small title="sem dado em 2022">‡</small>':d.pequena?' <small title="amostra pequena">†</small>':'';
+    return '<tr class="'+(k===S.mat?'sel':'')+'"><td>'+k+mark+'</td><td>'+f1(h.c)+'</td><td>'+f1(h.m)+'</td><td>'+f1(h.o)+'</td><td>'+f1(d.c)+'</td><td>'+f1(d.m)+'</td><td>'+f1(d.o)+'</td><td>'+(d.ausente?'—':f0(d.n))+'</td></tr>';
+  }).join('');
+  var cur=band('mt',S.mat,false), dcur=band('mt',S.mat,true), chart='';
+  if(!dcur.ausente){
+    var nums=[cur.c,cur.m,cur.o,dcur.c,dcur.m,dcur.o].filter(isNum);
+    var mn=Math.floor(Math.min.apply(null,nums)/20)*20-20, mx=Math.ceil(Math.max.apply(null,nums)/20)*20+20;
+    chart=gbars({title:'Matemática com '+S.mat+' acertos: 2023–2025 e padrão 2022',groups:[{label:'2023–2025',sub:'regra do app',vals:[cur.c,cur.m,cur.o]},{label:'2022',sub:'P10 · mediana · P90',vals:[dcur.c,dcur.m,dcur.o]}],colors:COL3,min:mn,max:mx,labelIdx:1})+legend([['Ponta baixa',COL3[0]],['Valor do meio',COL3[1]],['Ponta alta',COL3[2]]]);
+  }else chart='<p class="src">O CSV de 2022 não tem linha para '+S.mat+' acertos. O gráfico fica de fora para não inventar nota.</p>';
+  var m=TRI.meta.matematica_2022||{};
+  return '<div class="card" id="mt-compare"><h3>Matemática: padrão 2022 ao lado de 2023–2025</h3>'+warn2022Short()+chart+
+    '<div class="tscroll"><table><thead><tr><th>Acertos</th><th>2023–25 conserv.</th><th>2023–25 central</th><th>2023–25 otim.</th><th>2022 P10</th><th>2022 mediana</th><th>2022 P90</th><th>n 2022</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+    '<p class="src">A linha marcada é a Matemática da simulação atual ('+S.mat+' acertos). † menos de 300 candidatos nessa linha de 2022. ‡ o CSV não tem essa linha. No CSV, a mediana passa de 800 com 28 acertos em 2022, 35 em 2023, 34 em 2024 e 33 em 2025. Dado histórico, não é previsão.</p>'+
+    '<p class="src">Fonte de 2022: <a href="'+hrefOf(m.fonte_url||TRI.meta.fonte_url)+'" target="_blank" rel="noopener">Prof. Rafael Teixeira</a> (<a href="'+hrefOf(m.fonte_csv||TRI.meta.fonte_csv)+'" target="_blank" rel="noopener">CSV 2012–2025</a>), acesso em '+esc(dataBR(m.acessado_em||'2026-11-16'))+'. Matemática 2022 teve '+(m.itens_validos||43)+' questões válidas'+(m.itens_fora?' (itens '+esc(m.itens_fora)+')':'')+'. O CSV vai de 0 a 44 acertos e não traz 45. Histórico 2023–2025: acesso em '+esc(dataBR(TRI.meta.acessado_em))+'.</p></div>';
+}
 function renderVisao(){
-  $('#dyn-visao').innerHTML='<div class="card"><h2>Resultado da simulação</h2>'+uniSelect()+summaryKpis()+'</div>'+
+  $('#dyn-visao').innerHTML=padBanner()+'<div class="card"><h2>Resultado da simulação</h2>'+uniSelect()+summaryKpis()+'</div>'+
+  lorenzoHTML()+
   '<div class="card"><h3>Sua nota estimada versus cortes históricos</h3>'+chartCuts()+'</div>'+
-  '<div class="note"><b>Importante:</b> todos os números de nota são <b>estimativas</b> baseadas em dados históricos do ENEM (2023–2025). A nota oficial depende da dificuldade e dos parâmetros das questões e de quais itens você acerta. Cortes são de edições passadas, <b>não</b> são previsão para 2027 e <b>não</b> indicam chance de aprovação.</div>';
+  '<div class="note"><b>Importante:</b> todos os números de nota são <b>estimativas</b> baseadas em dados históricos do ENEM (2023–2025)'+(S.pad==='d22'?'. A Matemática deste cenário usa o padrão de 2022 (estimativa não oficial); as outras áreas continuam em 2023–2025':'')+'. A nota oficial depende da dificuldade e dos parâmetros das questões e de quais itens você acerta. Cortes são de edições passadas, <b>não</b> são previsão para 2027 e <b>não</b> indicam chance de aprovação.</div>'+
+  contextoHTML();
 }
 function renderTRI(){
   var sc={};SCK.forEach(function(c){sc[c]=scoresOf(S,c)});
-  var rows=AREAS.map(function(a){var k=a[0],ac=k==='ch'?'43':k==='lc'?S.lin:k==='cn'?S.nat:k==='mt'?S.mat:'—',t=k!=='red'?TRI.areas[k].tabela[clamp(k==='ch'?43:k==='lc'?S.lin:k==='cn'?S.nat:S.mat,0,45)]:null,flag=t&&t.est?' <small title="extrapolado">*</small>':t&&t.pequena?' <small title="amostra pequena">†</small>':'';
-    return '<tr><td>'+a[1]+'</td><td>'+ac+(k==='red'?'':'/45')+flag+'</td>'+SCK.map(function(c){return '<td>'+f1(sc[c][k])+'</td>'}).join('')+'</tr>'}).join('');
-  var avg='<tr><th>Média simples</th><th></th>'+SCK.map(function(c){return '<th>'+f1(avgOf(sc[c]))+'</th>'}).join('')+'</tr>';
+  var hist=bandsOf(S,false), b22=bandsOf(S,true);
+  function flagOf(b){
+    if(!b)return '';
+    if(b.ausente)return ' <small title="sem dado em 2022">‡</small>';
+    if(b.est)return ' <small title="extrapolado">*</small>';
+    if(b.pequena)return ' <small title="amostra pequena">†</small>';
+    return '';
+  }
+  function cells(b){return SCK.map(function(c){return '<td>'+f1(b[c])+'</td>'}).join('')}
+  var rows='';
+  AREAS.forEach(function(a){
+    var k=a[0], ac=k==='ch'?'43':k==='lc'?String(S.lin):k==='cn'?String(S.nat):k==='mt'?String(S.mat):'—';
+    var b=k==='red'?null:hist[k];
+    var nums=k==='red'?SCK.map(function(){return '<td>'+f1(S.red)+'</td>'}).join(''):cells(b);
+    rows+='<tr'+(k==='mt'&&S.pad!=='d22'?' class="sel"':'')+'><td>'+a[1]+'</td><td>'+(k==='red'?ac:ac+'/45')+flagOf(b)+'</td>'+nums+'</tr>';
+    if(k==='mt')rows+='<tr class="on22'+(S.pad==='d22'?' sel':'')+'"><td>Matemática no padrão 2022 (estimativa não oficial)</td><td>'+S.mat+'/45'+flagOf(b22.mt)+'</td>'+cells(b22.mt)+'</tr>';
+  });
+  function avgRow(label,as22,on){return '<tr'+(on?' class="sel"':'')+'><th>'+label+'</th><th></th>'+SCK.map(function(c){return '<th>'+f1(avgBand(S,as22,c))+'</th>'}).join('')+'</tr>'}
+  var avg=avgRow('Média simples · 2023–2025',false,S.pad!=='d22')+avgRow('Média simples · padrão 2022',true,S.pad==='d22');
   var withW=UNI.filter(function(u){return u.pesos});
   var wrows=withW.map(function(u){var p=u.pesos;return '<tr><td>'+esc(labelOf(u))+'</td><td>'+[pf(p.cn),pf(p.ch),pf(p.lc),pf(p.mt),pf(p.red)].join('/')+'</td>'+SCK.map(function(c){return '<td>'+f1(weighted(u,sc[c]))+'</td>'}).join('')+'</tr>'}).join('');
-  $('#view-tri').innerHTML='<div class="card"><h2>Simulador TRI</h2><div class="note"><b>Estimativa, não é a nota oficial.</b> A TRI não conta apenas acertos: a nota depende dos parâmetros das questões (dificuldade, discriminação e acerto ao acaso) e de <i>quais</i> questões foram acertadas. Aqui usamos a distribuição histórica de notas por número de acertos no ENEM 2023, 2024 e 2025 para dar uma faixa plausível.</div>'+
-  '<div class="info"><b>Como lemos os dados:</b> <b>Conservador</b> = menor percentil 10 entre 2023–2025; <b>Central</b> = média das medianas; <b>Otimista</b> = maior percentil 90. Ou seja, o conservador e o otimista cobrem cerca de 80% dos candidatos com aquele número de acertos nas três edições. Redação é a nota simulada, igual nos três cenários.</div>'+
+  var m22=TRI.meta.matematica_2022||{};
+  $('#view-tri').innerHTML='<div class="card"><h2>Simulador TRI</h2><div class="note"><b>Estimativa, não é a nota oficial.</b> A TRI não conta apenas acertos: a nota depende dos parâmetros das questões (dificuldade, discriminação e acerto ao acaso) e de <i>quais</i> questões foram acertadas. Aqui usamos a distribuição histórica de notas por número de acertos no ENEM 2023, 2024 e 2025 para dar uma faixa plausível. A linha extra de Matemática é o padrão de 2022 e não substitui esse histórico.</div>'+
+  '<div class="info"><b>Como lemos os dados:</b> <b>Conservador</b> = menor percentil 10 entre 2023–2025; <b>Central</b> = média das medianas; <b>Otimista</b> = maior percentil 90. Ou seja, o conservador e o otimista cobrem cerca de 80% dos candidatos com aquele número de acertos nas três edições. Redação é a nota simulada, igual nos três cenários. Na linha “Matemática no padrão 2022”, as três colunas são o P10, a mediana e o P90 só de 2022.</div>'+
+  warn2022()+
   '<div class="tscroll"><table><thead><tr><th>Área</th><th>Acertos</th><th>Conserv.</th><th>Central</th><th>Otimista</th></tr></thead><tbody>'+rows+'</tbody><tfoot>'+avg+'</tfoot></table></div>'+
-  '<p class="src">* extrapolado (sem candidatos observados nesse número de acertos) · † amostra pequena (&lt; 300 candidatos nas três edições).</p>'+
-  '<p class="src">Fonte: microdados oficiais do ENEM/INEP (aplicação regular), tabulados por <a href="'+TRI.meta.fonte_url+'" target="_blank" rel="noopener">Prof. Rafael Teixeira</a> (<a href="'+TRI.meta.fonte_csv+'" target="_blank" rel="noopener">planilha</a>); conferido com <a href="'+TRI.meta.fonte_secundaria+'" target="_blank" rel="noopener">EnemCopilot</a>. Microdados originais: <a href="'+TRI.meta.fonte_inep+'" target="_blank" rel="noopener">INEP</a>. Acesso em 09/11/2026. Os dados de 2026 ainda não existem.</p></div>'+
-  '<div class="card"><h3>Notas estimadas por área</h3>'+chartAreas()+'</div>'+
+  '<p class="src">* extrapolado (sem candidatos observados nesse número de acertos) · † amostra pequena (menos de 300 candidatos: nas três edições, na faixa 2023–2025; só em 2022, na linha do padrão 2022) · ‡ sem linha no CSV de 2022. Humanas com 43 acertos: 113 candidatos em 2022 e 295 em 2025 (amostra pequena); a faixa 2023–2025 soma 4.070 e não leva †.</p>'+
+  '<p class="src">Fonte 2023–2025: microdados oficiais do ENEM/INEP (aplicação regular), tabulados por <a href="'+TRI.meta.fonte_url+'" target="_blank" rel="noopener">Prof. Rafael Teixeira</a> (<a href="'+TRI.meta.fonte_csv+'" target="_blank" rel="noopener">planilha</a>); conferido com <a href="'+TRI.meta.fonte_secundaria+'" target="_blank" rel="noopener">EnemCopilot</a>. Microdados originais: <a href="'+TRI.meta.fonte_inep+'" target="_blank" rel="noopener">INEP</a>. Acesso em '+esc(dataBR(TRI.meta.acessado_em))+'.</p>'+
+  '<p class="src">Fonte do padrão 2022: <a href="'+hrefOf(m22.fonte_url||TRI.meta.fonte_url)+'" target="_blank" rel="noopener">'+esc(m22.fonte_nome||'Prof. Rafael Teixeira')+'</a>, acesso em '+esc(dataBR(m22.acessado_em||'2026-11-16'))+'. Os dados de 2026 ainda não existem.</p></div>'+
+  compareMtHTML()+
+  contextoHTML()+
+  '<div class="card"><h3>Notas estimadas por área</h3><p class="src">Gráfico do padrão selecionado: '+(S.pad==='d22'?'Matemática no padrão 2022; as outras áreas seguem 2023–2025.':'histórico 2023–2025.')+'</p>'+chartAreas()+'</div>'+
   '<div class="card"><h3>Conservador, central e otimista</h3>'+uniSelect()+chartScen()+'</div>'+
   '<div class="card"><h3>Evolução da média conforme os acertos</h3>'+chartEvo()+'</div>'+
   '<div class="card"><h3>E se acertar mais uma?</h3>'+chartSens()+'</div>'+
-  '<div class="card"><h3>Média ponderada por universidade</h3><p class="mut">Pesos na ordem Nat/Hum/Ling/Mat/Red, do relatório MEC de vagas do Sisu 2026 (edição única do ano). Nota = soma(peso × nota) ÷ soma dos pesos. '+withW.length+' cursos têm pesos; onde o peso não veio no levantamento, a linha não entra e o card marca <span class="st na">não verificado</span>.</p><div class="tscroll"><table><thead><tr><th>Univ.</th><th>Pesos</th><th>Conserv.</th><th>Central</th><th>Otim.</th></tr></thead><tbody>'+wrows+'</tbody></table></div></div>';
+  '<div class="card"><h3>Média ponderada por universidade</h3><p class="mut">Pesos na ordem Nat/Hum/Ling/Mat/Red, do relatório MEC de vagas do Sisu 2026 (edição única do ano). Nota = soma(peso × nota) ÷ soma dos pesos. '+withW.length+' cursos têm pesos; onde o peso não veio no levantamento, a linha não entra e o card marca <span class="st na">não verificado</span>. Esta tabela usa o padrão selecionado'+(S.pad==='d22'?': Matemática no padrão 2022 (estimativa não oficial).':': histórico 2023–2025.')+'</p><div class="tscroll"><table><thead><tr><th>Univ.</th><th>Pesos</th><th>Conserv.</th><th>Central</th><th>Otim.</th></tr></thead><tbody>'+wrows+'</tbody></table></div></div>';
 }
 function pesosChips(u){if(!u.pesos)return '<p class="src">Pesos: <span class="st na">não verificado</span> neste levantamento. A distância até o corte não é calculada.</p>';var p=u.pesos;return '<div class="pesos"><span>Natureza '+pf(p.cn)+'</span><span>Humanas '+pf(p.ch)+'</span><span>Linguagens '+pf(p.lc)+'</span><span>Matemática '+pf(p.mt)+'</span><span>Redação '+pf(p.red)+'</span></div>'}
 function cardTone(e){if(e.c==null)return 'na';if(e.d==null)return 'parcial';return e.st}
@@ -396,7 +581,7 @@ function renderUniv(){
   var semN=UNI.filter(function(u){return u.corte.valor==null}).length;
   var ed=META&&META.sisu2027;
   var info=ed?'<div class="info"><b>Sisu 2026 (edição única do ano)</b> — chamada regular, ampla concorrência, relatório oficial do MEC. '+sisuN+' campi com corte de 2026. '+semN+' processos próprios <b>sem corte comparável</b>. Sisu 2027: '+esc(ed.edital)+'. Datas de inscrição do candidato: <span class="st na">não verificado</span> ('+esc(ed.datas_candidato)+'). <a href="'+hrefOf(ed.fonte)+'" target="_blank" rel="noopener">Edital nº 86 no DOU</a>.</div>':'';
-  var h='<div class="card"><h2>Universidades públicas de Medicina</h2><p>'+UNI.length+' cursos. A faixa é de <b>corte histórico</b> (nível de disputa), <b>não de qualidade</b>. Ampla concorrência. Cortes passados <b>não</b> preveem 2027 e <b>não</b> são chance de aprovação.</p>'+info+
+  var h=padBanner()+'<div class="card"><h2>Universidades públicas de Medicina</h2><p>'+UNI.length+' cursos. A faixa é de <b>corte histórico</b> (nível de disputa), <b>não de qualidade</b>. Ampla concorrência. Cortes passados <b>não</b> preveem 2027 e <b>não</b> são chance de aprovação.</p>'+info+
   '<div class="filters"><div class="span2"><label for="q_q">Buscar</label><input id="q_q" type="search" data-in="q_q" value="'+esc(Q.q)+'" placeholder="Sigla, cidade, campus ou nome" autocomplete="off"></div>'+
   selFilter('q_uf','UF',distinct(function(u){return u.uf}),Q.uf,'Todas')+
   selFilter('q_reg','Região',distinct(function(u){return u.regiao}),Q.reg,'Todas')+
@@ -458,7 +643,7 @@ function sideBySide(){
 }
 function e2(v){return v==null?'sem corte comparável':f2(v)}
 function renderMetas(){
-  var u=uniById(S.uni),c=cutoff(u,S.mod),h='<div class="card"><h2>Quantos acertos faltam para a Medicina?</h2><p>Escolha a universidade e veja quantos acertos em Matemática (ou Natureza) igualam o <b>corte histórico</b>, mantendo Humanas 43, Linguagens '+S.lin+' e Redação '+S.red+'.</p>'+uniSelect()+
+  var u=uniById(S.uni),c=cutoff(u,S.mod),h=padBanner()+'<div class="card"><h2>Quantos acertos faltam para a Medicina?</h2><p>Escolha a universidade e veja quantos acertos em Matemática (ou Natureza) igualam o <b>corte histórico</b>, mantendo Humanas 43, Linguagens '+S.lin+' e Redação '+S.red+'.</p>'+uniSelect()+
   '<div class="note"><b>Leitura correta:</b> isto é uma conta matemática sobre um corte de edição passada. <b>Não é probabilidade</b> de aprovação: o corte de 2027 pode ser maior ou menor, e a nota oficial pode diferir da estimada.</div></div>';
   if(c==null){h+='<div class="card"><p><b>'+esc(labelOf(u))+'</b> está <b>sem corte comparável</b> ('+esc(u.processo.tipo)+'). '+verChip(u.status_verificacao)+'</p><p class="statusline">'+esc(u.status_verificacao||'não verificado')+'</p><p class="src">'+esc(u.processo.status2027||'')+'</p></div>';$('#view-metas').innerHTML=h;return}
   if(!u.pesos){h+='<div class="card"><p><b>'+esc(labelOf(u))+'</b> tem corte histórico <b>'+f2(c)+'</b> ('+esc(u.corte.edicao||'')+'). '+verChip(u.status_verificacao)+' '+esc(u.status_verificacao||'')+'</p><p>Os pesos estão <span class="st na">não verificado</span>. Esta conta de acertos não é feita, para não inventar uma distância.</p></div>';$('#view-metas').innerHTML=h;return}
@@ -487,7 +672,7 @@ function renderComparador(){
   var shown=rows.slice(0,F.limit);
   function th(k,l){return '<th class="sortable" data-act="sort" data-k="'+k+'">'+l+(F.sort===k?(F.dir<0?' ▼':' ▲'):'')+'</th>'}
   var gap=cutoff(u,S.mod)==null?'<div class="note">'+esc(labelOf(u))+' está sem corte comparável. A tabela mostra as médias; a situação do corte fica em branco.</div>':(!u.pesos?'<div class="note">Pesos de '+esc(labelOf(u))+': <span class="st na">não verificado</span>. A distância até o corte não é calculada.</div>':'');
-  var h='<div class="card"><h2>Comparador de cenários</h2><p>Todas as combinações de Linguagens (34–37) × Redação (920/930/940/960) × Natureza × Matemática (padrão 37–40) = <b>256 combinações</b>, com Humanas fixo em 43. Cenário TRI: <b>'+SC[S.cen]+'</b>. Toque numa linha para usar a combinação.</p>'+uniSelect()+gap+
+  var h=padBanner()+'<div class="card"><h2>Comparador de cenários</h2><p>Todas as combinações de Linguagens (34–37) × Redação (920/930/940/960) × Natureza × Matemática (padrão 37–40) = <b>256 combinações</b>, com Humanas fixo em 43. Cenário TRI: <b>'+SC[S.cen]+'</b>'+(S.pad==='d22'?' · Matemática no padrão 2022 (estimativa não oficial)':'')+'. Toque numa linha para usar a combinação.</p>'+uniSelect()+gap+
   '<div class="filters"><div><label>Linguagens</label>'+sel('lin',LIN,F.lin)+'</div><div><label>Redação</label>'+sel('red',RED,F.red)+'</div><div><label>Natureza</label>'+sel('nat',N,F.nat)+'</div><div><label>Matemática</label>'+sel('mat',M,F.mat)+'</div>'+
   '<div><label>Situação</label><select data-in="f_st"><option value="">Todas</option><option value="acima"'+(F.st==='acima'?' selected':'')+'>Acima do corte</option><option value="prox"'+(F.st==='prox'?' selected':'')+'>Perto do corte</option><option value="abaixo"'+(F.st==='abaixo'?' selected':'')+'>Abaixo do corte</option></select></div>'+
   '<div class="check" style="align-self:end"><input type="checkbox" id="f_only" data-in="f_only"'+(F.only?' checked':'')+'><label for="f_only">Só as que alcançam o corte</label></div></div>'+
@@ -541,20 +726,21 @@ function renderRelatorio(){
     var lo=evalU(u,S,'c','ampla'),hi=evalU(u,S,'o','ampla');return '<tr><td>'+name+'</td><td>'+f2(e.c)+' <small>('+u.corte.ano+')</small></td><td>'+f1(e.w)+'</td><td>'+sgn(e.d)+'</td><td>'+distBadge(e)+'<br><small>'+sgn(lo.d)+' a '+sgn(hi.d)+'</small><br>'+verChip(u.status_verificacao)+'</td></tr>'}).join('');
   var txt=resumo();
   $('#view-relatorio').innerHTML='<div class="card hero"><h1>Rota Medicina 2027 — Relatório</h1><p>Simulação do Lorenzo · gerado em '+new Date().toLocaleDateString('pt-BR')+'</p></div>'+
-  '<div class="card no-print"><h2>Compartilhar</h2><p>O link guarda esta simulação (Linguagens '+S.lin+', Redação '+S.red+', Natureza '+S.nat+', Matemática '+S.mat+', cenário '+SC[S.cen].toLowerCase()+').</p><div class="btn-row"><button class="btn" data-act="copylink" type="button">Copiar link do cenário</button><button class="btn btn-green" data-act="share" type="button">Compartilhar</button><button class="btn btn-ghost" data-act="pdf" type="button">Exportar PDF</button><button class="btn btn-ghost" data-act="copytxt" type="button">Copiar resumo</button></div><p class="src">PDF: na janela de impressão, escolha “Salvar como PDF” (no iPhone: compartilhar → Salvar em Arquivos).</p><textarea readonly id="share-url" style="width:100%;min-height:70px;border:1.5px solid var(--line);border-radius:12px;padding:8px;font:12px monospace">'+esc(shareURL())+'</textarea></div>'+
-  '<div class="card"><h3>Cenário simulado</h3><p>Humanas 43/45 (fixo) · Linguagens '+S.lin+' · Redação '+S.red+' · Natureza '+S.nat+'/45 · Matemática '+S.mat+'/45</p><div class="tscroll"><table><thead><tr><th>Área</th><th>Conserv.</th><th>Central</th><th>Otimista</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>'+
-  '<div class="card"><h3>Comparação com cortes históricos (ampla, cenário '+SC[S.cen].toLowerCase()+')</h3><div class="tscroll"><table><thead><tr><th>Univ.</th><th>Corte</th><th>Sua nota</th><th>Dif.</th><th>Situação</th></tr></thead><tbody>'+urows+'</tbody></table></div><p class="src">Diferença abaixo da situação: faixa conservador a otimista.</p></div>'+
+  '<div class="card no-print"><h2>Compartilhar</h2><p>O link guarda esta simulação (Linguagens '+S.lin+', Redação '+S.red+', Natureza '+S.nat+', Matemática '+S.mat+', cenário '+SC[S.cen].toLowerCase()+(S.pad==='d22'?', Matemática no padrão 2022':'')+').</p><div class="btn-row"><button class="btn" data-act="copylink" type="button">Copiar link do cenário</button><button class="btn btn-green" data-act="share" type="button">Compartilhar</button><button class="btn btn-ghost" data-act="pdf" type="button">Exportar PDF</button><button class="btn btn-ghost" data-act="copytxt" type="button">Copiar resumo</button></div><p class="src">PDF: na janela de impressão, escolha “Salvar como PDF” (no iPhone: compartilhar → Salvar em Arquivos).</p><textarea readonly id="share-url" style="width:100%;min-height:70px;border:1.5px solid var(--line);border-radius:12px;padding:8px;font:12px monospace">'+esc(shareURL())+'</textarea></div>'+
+  '<div class="card"><h3>Cenário simulado</h3><p>Humanas 43/45 (fixo) · Linguagens '+S.lin+' · Redação '+S.red+' · Natureza '+S.nat+'/45 · Matemática '+S.mat+'/45. Padrão: '+(S.pad==='d22'?'Matemática no padrão 2022 (estimativa não oficial); as outras áreas seguem 2023–2025.':'histórico 2023–2025.')+'</p><div class="tscroll"><table><thead><tr><th>Área</th><th>Conserv.</th><th>Central</th><th>Otimista</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>'+
+  (function(){var h=band('mt',S.mat,false),d=band('mt',S.mat,true);return '<div class="card"><h3>Matemática com '+S.mat+' acertos: 2023–2025 e padrão 2022</h3>'+warn2022()+'<div class="tscroll"><table><thead><tr><th></th><th>Ponta baixa</th><th>Meio</th><th>Ponta alta</th></tr></thead><tbody><tr><td>2023–2025 (conserv. / central / otim.)</td><td>'+f1(h.c)+'</td><td>'+f1(h.m)+'</td><td>'+f1(h.o)+'</td></tr><tr class="on22"><td>Padrão 2022 (P10 / mediana / P90)</td><td>'+f1(d.c)+'</td><td>'+f1(d.m)+'</td><td>'+f1(d.o)+'</td></tr></tbody></table></div><p class="src">A comparação com os cortes, abaixo, usa o padrão selecionado: '+(S.pad==='d22'?'Matemática no padrão 2022. As outras áreas seguem 2023–2025.':'histórico 2023–2025.')+'</p></div>'})()+
+  '<div class="card"><h3>Comparação com cortes históricos (ampla, cenário '+SC[S.cen].toLowerCase()+(S.pad==='d22'?' · mat. 2022':'')+')</h3><div class="tscroll"><table><thead><tr><th>Univ.</th><th>Corte</th><th>Sua nota</th><th>Dif.</th><th>Situação</th></tr></thead><tbody>'+urows+'</tbody></table></div><p class="src">Diferença abaixo da situação: faixa conservador a otimista.</p></div>'+
   '<div class="card"><h3>Notas por área</h3>'+chartAreas()+'</div><div class="card"><h3>Nota simulada versus cortes</h3>'+chartCuts()+'</div>'+
   '<div class="card"><h3>Mensagem</h3>'+MSG+'</div>'+
-  '<div class="note"><b>Avisos:</b> (1) notas por área são <b>estimativas</b> pelo histórico do ENEM 2023–2025; a nota oficial depende da TRI e das questões acertadas. (2) Cortes são da edição única do Sisu 2026 (chamada regular, ampla) ou, no caso da UnB, do Acesso Enem 2026 com status parcial. <b>Não</b> preveem 2027. (3) Nenhuma probabilidade de aprovação é calculada. (4) Onde o status não é verificado, o texto permanece <b>não verificado</b>. (5) UNEMAT: o corte 786,79 é do Sisu 2026 e não se aplica ao processo próprio de 2027.</div>'+
-  '<div class="card"><h3>Fontes</h3><ul class="tight src"><li>TRI: microdados ENEM/INEP via <a href="'+TRI.meta.fonte_url+'">Prof. Rafael Teixeira</a> e <a href="'+TRI.meta.fonte_secundaria+'">EnemCopilot</a>; <a href="'+TRI.meta.fonte_inep+'">INEP</a>.</li><li>Cortes e pesos do Sisu 2026: relatórios oficiais do MEC (inscrições e notas de corte; vagas ofertadas), citados em cada curso. Conferidos também em agregadores que republicam o MEC.</li><li>Sisu 2027: '+(META&&META.sisu2027?'<a href="'+hrefOf(META.sisu2027.fonte)+'">'+esc(META.sisu2027.edital)+'</a>. Datas do candidato: não verificado.':'edital de adesão.')+'</li><li>Processos próprios: <code>data/vestibulares.json</code>, com fonte e data de acesso em cada linha.</li><li>Dados editáveis em <code>data/universidades.json</code>, <code>data/vestibulares.json</code> e <code>data/tri.json</code>.</li></ul></div>';
+  '<div class="note"><b>Avisos:</b> (1) notas por área são <b>estimativas</b> pelo histórico do ENEM 2023–2025; a nota oficial depende da TRI e das questões acertadas. O padrão 2022 de Matemática é estimativa não oficial: não é tabela de 2026, aquela edição teve 43 questões válidas, o número válido de 2026 só se sabe após o gabarito de 18/11/2026, a opinião dos professores está dividida, e os dados reais substituem isto em 18/01/2027. (2) Cortes são da edição única do Sisu 2026 (chamada regular, ampla) ou, no caso da UnB, do Acesso Enem 2026 com status parcial. <b>Não</b> preveem 2027. (3) Nenhuma probabilidade de aprovação é calculada. (4) Onde o status não é verificado, o texto permanece <b>não verificado</b>. (5) UNEMAT: o corte 786,79 é do Sisu 2026 e não se aplica ao processo próprio de 2027.</div>'+
+  '<div class="card"><h3>Fontes</h3><ul class="tight src"><li>TRI 2023–2025: microdados ENEM/INEP via <a href="'+TRI.meta.fonte_url+'">Prof. Rafael Teixeira</a> e <a href="'+TRI.meta.fonte_secundaria+'">EnemCopilot</a>; <a href="'+TRI.meta.fonte_inep+'">INEP</a>. Acesso em '+esc(dataBR(TRI.meta.acessado_em))+'.</li><li>Matemática 2022: <a href="'+hrefOf((TRI.meta.matematica_2022||{}).fonte_url||TRI.meta.fonte_url)+'">Prof. Rafael Teixeira</a>, acesso em '+esc(dataBR((TRI.meta.matematica_2022||{}).acessado_em||'2026-11-16'))+'. Estimativa não oficial, não é tabela de 2026.</li><li>Cortes e pesos do Sisu 2026: relatórios oficiais do MEC (inscrições e notas de corte; vagas ofertadas), citados em cada curso. Conferidos também em agregadores que republicam o MEC.</li><li>Sisu 2027: '+(META&&META.sisu2027?'<a href="'+hrefOf(META.sisu2027.fonte)+'">'+esc(META.sisu2027.edital)+'</a>. Datas do candidato: não verificado.':'edital de adesão.')+'</li><li>Processos próprios: <code>data/vestibulares.json</code>, com fonte e data de acesso em cada linha.</li><li>Dados editáveis em <code>data/universidades.json</code>, <code>data/vestibulares.json</code> e <code>data/tri.json</code>.</li></ul></div>';
   $('#view-relatorio').setAttribute('data-txt',txt);
 }
 function resumo(){
   var sc=scoresOf(S,S.cen), hit=compUnis().filter(function(x){return reached(x,S,S.cen,'ampla')});
   var u=uniById(S.uni), e=evalU(u,S,S.cen,S.mod);
   var ref=e.c==null?'sem corte comparável':(e.d==null?'corte '+f2(e.c)+', pesos não verificados':'diferença '+sgn(e.d));
-  return 'Rota Medicina 2027 — simulação do Lorenzo\nHumanas 43 · Ling. '+S.lin+' · Red. '+S.red+' · Nat. '+S.nat+' · Mat. '+S.mat+'\nMédia simples estimada ('+SC[S.cen].toLowerCase()+'): '+f1(avgOf(sc))+'\nReferência '+labelOf(u)+': '+ref+' ('+(u.status_verificacao||'não verificado')+')\nCorte histórico alcançado em '+hit.length+' de '+compUnis().length+' cursos com corte e pesos.\nEstimativas, não é nota oficial nem previsão de aprovação.\n'+shareURL();
+  return 'Rota Medicina 2027 — simulação do Lorenzo\nHumanas 43 · Ling. '+S.lin+' · Red. '+S.red+' · Nat. '+S.nat+' · Mat. '+S.mat+'\nPadrão: '+(S.pad==='d22'?'Matemática no padrão 2022 (estimativa não oficial)':'histórico 2023–2025')+'\nMédia simples estimada ('+SC[S.cen].toLowerCase()+'): '+f1(avgOf(sc))+'\nReferência '+labelOf(u)+': '+ref+' ('+(u.status_verificacao||'não verificado')+')\nCorte histórico alcançado em '+hit.length+' de '+compUnis().length+' cursos com corte e pesos.\nEstimativas, não é nota oficial, não é previsão de corte e não é probabilidade de aprovação.\n'+shareURL();
 }
 
 /* ---------- navegação / render ---------- */
@@ -591,9 +777,12 @@ document.addEventListener('click',function(ev){
     case 'nat':S.nat=+v;update();break;
     case 'mat':S.mat=+v;update();break;
     case 'cen':S.cen=v;update();break;
+    case 'pad':S.pad=v==='d22'?'d22':'hist';update();break;
+    case 'lred':applyLorenzo(+v===960?960:940);update();break;
+    case 'lorenzo':applyLorenzo(Lred===960?960:940);$('#sheet').hidden=true;showView('visao',true);break;
     case 'natd':setStep('nat',+el.getAttribute('data-d'));break;
     case 'matd':setStep('mat',+el.getAttribute('data-d'));break;
-    case 'reset':S.lin=DEF.lin;S.red=DEF.red;S.nat=DEF.nat;S.mat=DEF.mat;S.cen=DEF.cen;update();break;
+    case 'reset':S.lin=DEF.lin;S.red=DEF.red;S.nat=DEF.nat;S.mat=DEF.mat;S.cen=DEF.cen;S.pad='hist';Lred=940;update();break;
     case 'cell':S.nat=+el.getAttribute('data-n');S.mat=+el.getAttribute('data-m');update();break;
     case 'pickrow':S.lin=+el.getAttribute('data-l');S.red=+el.getAttribute('data-r');S.nat=+el.getAttribute('data-n');S.mat=+el.getAttribute('data-m');update();toast('Combinação aplicada ao painel');break;
     case 'sort':var k=el.getAttribute('data-k');if(F.sort===k)F.dir=-F.dir;else{F.sort=k;F.dir=(k==='avg'||k==='w'||k==='d')?-1:1}renderCurrent();break;
@@ -635,5 +824,5 @@ function boot(){
   initViews();showView(S.v,false);
 }
 function fail(e){$('#app').innerHTML='<div class="err">Não foi possível carregar os dados ('+esc(e&&e.message||e)+'). Abra este link pela internet (não como arquivo local).</div>'}
-Promise.all([fetch('data/tri.json').then(function(r){if(!r.ok)throw new Error('tri.json '+r.status);return r.json()}),fetch('data/universidades.json').then(function(r){if(!r.ok)throw new Error('universidades.json '+r.status);return r.json()}),fetch('data/vestibulares.json').then(function(r){if(!r.ok)throw new Error('vestibulares.json '+r.status);return r.json()})]).then(function(r){TRI=r[0];META=r[1].meta||{};LEGADO=META.ids_legado||{};UNI=(r[1].universidades||[]).map(prepUni);VEST=r[2];window.__RM_DATA={meta:META};B.ua=canonUni(B.ua);B.ub=canonUni(B.ub);readURL();boot()}).catch(fail);
+Promise.all([fetch('data/tri.json').then(function(r){if(!r.ok)throw new Error('tri.json '+r.status);return r.json()}),fetch('data/universidades.json').then(function(r){if(!r.ok)throw new Error('universidades.json '+r.status);return r.json()}),fetch('data/vestibulares.json').then(function(r){if(!r.ok)throw new Error('vestibulares.json '+r.status);return r.json()}),fetch('data/contexto-enem-2026.json').then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(r){TRI=r[0];META=r[1].meta||{};LEGADO=META.ids_legado||{};UNI=(r[1].universidades||[]).map(prepUni);VEST=r[2];CTX=r[3];window.__RM_DATA={meta:META};B.ua=canonUni(B.ua);B.ub=canonUni(B.ub);readURL();boot()}).catch(fail);
 })();
