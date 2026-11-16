@@ -133,3 +133,11 @@ ul.tight{margin:.3rem 0;padding-left:1.1rem}ul.tight li{margin:.2rem 0}
 @media print{.fab{display:none!important}}
 
 #combo-table th,#combo-table td{padding:9px 5px;font-size:.8rem}
+.seg.wrap{flex-wrap:wrap}
+.seg.wrap button{flex:1 1 220px;white-space:normal;height:auto;min-height:52px;padding:10px 12px;line-height:1.25;font-size:.95rem}
+.warn{background:#fff4e0;border:1px solid #e0b15a;border-left:6px solid #d97706;color:#6b3d00;border-radius:12px;padding:10px 12px;font-size:.92rem;margin:8px 0}
+.warn b{color:#6b3d00}
+.chip.w{background:var(--amber2);color:#8a4b00}
+tr.on22 td{background:#fff8eb}
+tr.on22.sel td{background:#fff4e0}
+.news li{margin:.45rem 0}
